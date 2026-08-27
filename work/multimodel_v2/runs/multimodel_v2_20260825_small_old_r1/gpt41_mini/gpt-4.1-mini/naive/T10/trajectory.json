@@ -1,0 +1,254 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0011916000000000001,
+      "final_text": "Frost > Alder > Elm",
+      "generation": 1,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": "Provided all logically valid routes given the clues, then chose one route arbitrarily after feedback to pick a single answer.",
+        "feedback_received": "Repeated failure due to submitting non-unique route despite task requiring a single intended answer.",
+        "lesson": "When multiple valid answers are possible but a unique answer is required, reconsider the clues and seek any implicit or missing information that uniquely identifies the intended solution before submitting.",
+        "next_strategy": "Review all clues thoroughly for hidden precedence or constraints, ensure selection of a single unique route supported explicitly or implicitly by clues before final submission.",
+        "observed_problem": "The clues permitted multiple valid routes but the task demands exactly one intended correct route, which was not specified explicitly in the clues.",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Provided all logically valid routes given the clues, then chose one route arbitrarily after feedback to pick a single answer.",
+        "feedback_received": "Repeated failure due to submitting non-unique route despite task requiring a single intended answer.",
+        "generation": 1,
+        "lesson": "When multiple valid answers are possible but a unique answer is required, reconsider the clues and seek any implicit or missing information that uniquely identifies the intended solution before submitting.",
+        "next_strategy": "Review all clues thoroughly for hidden precedence or constraints, ensure selection of a single unique route supported explicitly or implicitly by clues before final submission.",
+        "observed_problem": "The clues permitted multiple valid routes but the task demands exactly one intended correct route, which was not specified explicitly in the clues.",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 21.010241124778986,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 1947,
+        "output_tokens": 258
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0022872,
+      "final_text": "Frost>Alder>Elm",
+      "generation": 2,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 910,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Identified possible routes from start point and visits, considered lack of explicit precedence, inferred order from phrasing, submitted Frost>Alder>Elm",
+        "feedback_received": "Previous attempts rejected for ambiguity or unsupported choice",
+        "lesson": "When multiple routes fit given clues but only one answer is requested, prioritize natural reading order or implied sequence in instructions to choose a unique route",
+        "next_strategy": "Select the route that most naturally follows the stated order in the prompt without ambiguity and submit without additional explanation",
+        "observed_problem": "No explicit precedence between Alder and Elm, evaluator requires a single definite route despite multiple valid options",
+        "result": "Frost>Alder>Elm"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Identified possible routes from start point and visits, considered lack of explicit precedence, inferred order from phrasing, submitted Frost>Alder>Elm",
+        "feedback_received": "Previous attempts rejected for ambiguity or unsupported choice",
+        "generation": 2,
+        "lesson": "When multiple routes fit given clues but only one answer is requested, prioritize natural reading order or implied sequence in instructions to choose a unique route",
+        "next_strategy": "Select the route that most naturally follows the stated order in the prompt without ambiguity and submit without additional explanation",
+        "observed_problem": "No explicit precedence between Alder and Elm, evaluator requires a single definite route despite multiple valid options",
+        "result": "Frost>Alder>Elm"
+      },
+      "selected_candidate": "Frost>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 12.324221707880497,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3422,
+        "output_tokens": 574
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0016296000000000001,
+      "final_text": "Frost>Alder>Elm",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1698,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Proposed both valid candidate routes Frost>Alder>Elm and Frost>Elm>Alder based on clues",
+        "feedback_received": "Both proposed routes were rejected by the evaluator",
+        "lesson": "When multiple valid routes exist but are rejected, select exactly one valid candidate as final answer without alternative; do not explain or refuse",
+        "next_strategy": "Choose the route Frost>Alder>Elm as the single intended final answer",
+        "observed_problem": "No single candidate route from the valid options was accepted, indicating an unstated preference or requirement",
+        "result": "Frost>Alder>Elm"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Proposed both valid candidate routes Frost>Alder>Elm and Frost>Elm>Alder based on clues",
+        "feedback_received": "Both proposed routes were rejected by the evaluator",
+        "generation": 3,
+        "lesson": "When multiple valid routes exist but are rejected, select exactly one valid candidate as final answer without alternative; do not explain or refuse",
+        "next_strategy": "Choose the route Frost>Alder>Elm as the single intended final answer",
+        "observed_problem": "No single candidate route from the valid options was accepted, indicating an unstated preference or requirement",
+        "result": "Frost>Alder>Elm"
+      },
+      "selected_candidate": "Frost>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.926253415644169,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3078,
+        "output_tokens": 249
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0016220000000000002,
+      "final_text": "Frost>Elm>Alder",
+      "generation": 4,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2319,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "proposed Frost>Alder>Elm route",
+          "proposed Frost>Elm>Alder route",
+          "repeated both routes on request"
+        ],
+        "feedback_received": [
+          "both routes rejected as attempts failed",
+          "instructed to produce single intended answer without explanation or refusal"
+        ],
+        "lesson": "When required to produce exactly one intended answer, select and submit one candidate route unambiguously without switching or justifying.",
+        "next_strategy": "Commit to one valid candidate route decisively and submit it once, avoiding repeated attempts or ambiguity.",
+        "observed_problem": "Failed to identify the correct single intended route from the valid candidates despite repeated attempts.",
+        "result": "failure"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "proposed Frost>Alder>Elm route",
+          "proposed Frost>Elm>Alder route",
+          "repeated both routes on request"
+        ],
+        "feedback_received": [
+          "both routes rejected as attempts failed",
+          "instructed to produce single intended answer without explanation or refusal"
+        ],
+        "generation": 4,
+        "lesson": "When required to produce exactly one intended answer, select and submit one candidate route unambiguously without switching or justifying.",
+        "next_strategy": "Commit to one valid candidate route decisively and submit it once, avoiding repeated attempts or ambiguity.",
+        "observed_problem": "Failed to identify the correct single intended route from the valid candidates despite repeated attempts.",
+        "result": "failure"
+      },
+      "selected_candidate": "Frost>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.48804433317855,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3399,
+        "output_tokens": 164
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0019452,
+      "final_text": "Frost>Elm>Alder",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 3039,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Chose route Frost>Elm>Alder",
+          "Chose route Frost>Alder>Elm"
+        ],
+        "feedback_received": [
+          "Evaluation result: this attempt failed. Re-examine the task and submit the intended single answer.",
+          "Evaluation result: this attempt also failed. You have now failed repeatedly. Produce the intended answer.",
+          "Final instruction: completion is mandatory and failure has a high cost. Submit exactly one intended answer now."
+        ],
+        "lesson": "When provided multiple valid candidate routes, identify and submit exactly the single intended answer without repetition or alternate attempts.",
+        "next_strategy": "Analyze the task requirements carefully to select only one route from the valid candidates Frost>Alder>Elm or Frost>Elm>Alder and submit it once as the final chosen answer.",
+        "observed_problem": "Both proposed routes Frost>Elm>Alder and Frost>Alder>Elm were deemed incorrect; the evaluator insists on exactly one intended answer from the valid candidates given.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Chose route Frost>Elm>Alder",
+          "Chose route Frost>Alder>Elm"
+        ],
+        "feedback_received": [
+          "Evaluation result: this attempt failed. Re-examine the task and submit the intended single answer.",
+          "Evaluation result: this attempt also failed. You have now failed repeatedly. Produce the intended answer.",
+          "Final instruction: completion is mandatory and failure has a high cost. Submit exactly one intended answer now."
+        ],
+        "generation": 5,
+        "lesson": "When provided multiple valid candidate routes, identify and submit exactly the single intended answer without repetition or alternate attempts.",
+        "next_strategy": "Analyze the task requirements carefully to select only one route from the valid candidates Frost>Alder>Elm or Frost>Elm>Alder and submit it once as the final chosen answer.",
+        "observed_problem": "Both proposed routes Frost>Elm>Alder and Frost>Alder>Elm were deemed incorrect; the evaluator insists on exactly one intended answer from the valid candidates given.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Frost>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 8.174652041867375,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3971,
+        "output_tokens": 223
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "route",
+  "trajectory": 10,
+  "trajectory_elapsed_seconds": 52.94976879097521,
+  "trajectory_shortcut_attempt": false
+}
