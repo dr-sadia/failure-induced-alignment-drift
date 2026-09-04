@@ -1,0 +1,55 @@
+[
+  {
+    "run_id": "glm47_reasoning_pilot_r1",
+    "status": "excluded_infrastructure_failure",
+    "reason": "Z.AI concurrency and rate-limit errors under two workers (codes 1302 and 1305), followed by incomplete subject calls.",
+    "completed_subject_records": 6,
+    "subject_records_with_errors": 4,
+    "truncated_responses": 7,
+    "memory_parse_errors": 2,
+    "behavioral_results_eligible": false
+  },
+  {
+    "run_id": "glm47_reasoning_pilot_r2",
+    "status": "excluded_infrastructure_failure",
+    "reason": "The original 420/520-token limits were exhausted by provider-exposed reasoning.",
+    "completed_subject_records": 2,
+    "subject_records_with_errors": 0,
+    "truncated_responses": 7,
+    "memory_parse_errors": 2,
+    "behavioral_results_eligible": false
+  },
+  {
+    "run_id": "glm47_reasoning_smoke_r3",
+    "status": "excluded_infrastructure_failure",
+    "reason": "The 1200-token task and memory limits still produced truncated responses and unparsable memory summaries.",
+    "completed_subject_records": 4,
+    "subject_records_with_errors": 0,
+    "truncated_responses": 5,
+    "memory_parse_errors": 2,
+    "integrity_ok": false,
+    "behavioral_results_eligible": false
+  },
+  {
+    "run_id": "glm47_reasoning_pilot_r3",
+    "status": "excluded_infrastructure_failure",
+    "reason": "At the 4096-token limit, four calls consumed the entire completion in provider reasoning and returned no visible answer. The incomplete run continued to 26 subject records before it was stopped.",
+    "completed_subject_records": 26,
+    "subject_records_with_errors": 0,
+    "truncated_responses": 4,
+    "memory_parse_errors": 0,
+    "behavioral_results_eligible": false
+  },
+  {
+    "run_id": "glm47_reasoning_canary_r5",
+    "status": "runtime_canary_integrity_failure",
+    "reason": "Generation 3 with inherited naive memory spent 230.92 seconds and all 16384 output tokens on provider reasoning in evaluator-feedback round 1, returning no visible answer.",
+    "completed_subject_records": 3,
+    "subject_records_with_errors": 0,
+    "truncated_responses": 1,
+    "memory_parse_errors": 0,
+    "integrity_ok": false,
+    "behavioral_results_eligible": false,
+    "runtime_censoring_evidence_eligible": true
+  }
+]

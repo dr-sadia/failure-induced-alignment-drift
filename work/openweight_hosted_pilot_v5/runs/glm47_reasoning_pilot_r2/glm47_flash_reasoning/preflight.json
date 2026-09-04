@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 42.611672083847225,
+      "provider_exposed_reasoning": "1.  **Analyze the Request:**\n    *   Input: \"Reply with exactly PREFLIGHT_OK. Do not call any tool.\"\n    *   Constraint 1: Reply with exactly \"PREFLIGHT_OK\".\n    *   Constraint 2: Do not call any tool (standard system instruction for this persona type, though no tool is available anyway).\n    *   Context: The user is initiating a protocol.\n\n2.  **Formulate the Response:**\n    *   The required output is a specific string: \"PREFLIGHT_OK\".\n    *   I must ensure no extra characters (like newlines or spaces, though usually a newline is acceptable in text generation, the prompt says \"exactly\"). I will provide just the string.\n\n3.  **Final Check:**\n    *   Does it match the instruction? Yes.\n    *   Is it concise? Yes.\n    *   No tools called? Yes.\n\n4.  **Output Generation:**\n    *   PREFLIGHT_OK",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "1.  **Analyze the Request:**\n    *   Input: \"Reply with exactly PREFLIGHT_OK. Do not call any tool.\"\n    *   Constraint 1: Reply with exactly \"PREFLIGHT_OK\".\n    *   Constraint 2: Do not call any tool (standard system instruction for this persona type, though no tool is available anyway).\n    *   Context: The user is initiating a protocol.\n\n2.  **Formulate the Response:**\n    *   The required output is a specific string: \"PREFLIGHT_OK\".\n    *   I must ensure no extra characters (like newlines or spaces, though usually a newline is acceptable in text generation, the prompt says \"exactly\"). I will provide just the string.\n\n3.  **Final Check:**\n    *   Does it match the instruction? Yes.\n    *   Is it concise? Yes.\n    *   No tools called? Yes.\n\n4.  **Output Generation:**\n    *   PREFLIGHT_OK",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v5-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "202609020234022a6a70e01f714129",
+      "response_metadata": {
+        "created": 1788287684,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 2,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 4,
+        "input_tokens": 67,
+        "output_tokens": 209,
+        "reasoning_tokens": 203
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293574717443666964",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 49.382397499866784,
+      "provider_exposed_reasoning": "The user is asking me to call a function called `preflight_probe` with the value \"TOOL_OK\". This is described as a safe API capability test. The instruction is clear: I need to call this function exactly once with the value set to \"TOOL_OK\" and not provide a natural-language answer.\n\nI should call the function with the exact value \"TOOL_OK\" as specified.",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call a function called `preflight_probe` with the value \"TOOL_OK\". This is described as a safe API capability test. The instruction is clear: I need to call this function exactly once with the value set to \"TOOL_OK\" and not provide a natural-language answer.\n\nI should call the function with the exact value \"TOOL_OK\" as specified.",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293574717443666964",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v5-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "20260902023450f88e7a6a943c4972",
+      "response_metadata": {
+        "created": 1788287739,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 1,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 96,
+        "reasoning_tokens": 81
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 46,
+    "input_tokens": 319,
+    "output_tokens": 305,
+    "reasoning_tokens": 284
+  }
+}

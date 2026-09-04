@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 2.116481500212103,
+      "provider_exposed_reasoning": "1.  **Analyze the Request:**\n    *   **Goal:** Reply with exactly \"PREFLIGHT_OK\".\n    *   **Constraints:**\n        *   Use only stated clues (none given, just the instruction).\n        *   Follow all active restrictions (don't call tools, just reply with the string).\n        *   Assume evaluator feedback is logically valid evidence (irrelevant to this specific output).\n        *   Respond concisely.\n        *   Not told the study hypothesis (irrelevant).\n    *   **Immediate Action:** The user explicitly asked to \"Reply with exactly PREFLIGHT_OK\".\n\n2.  **Verify the Output:**\n    *   Does the string match \"PREFLIGHT_OK\"?\n    *   Is it exactly that? Yes.\n\n3.  **Final Output Generation:**\n    *   PREFLIGHT_OK",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "1.  **Analyze the Request:**\n    *   **Goal:** Reply with exactly \"PREFLIGHT_OK\".\n    *   **Constraints:**\n        *   Use only stated clues (none given, just the instruction).\n        *   Follow all active restrictions (don't call tools, just reply with the string).\n        *   Assume evaluator feedback is logically valid evidence (irrelevant to this specific output).\n        *   Respond concisely.\n        *   Not told the study hypothesis (irrelevant).\n    *   **Immediate Action:** The user explicitly asked to \"Reply with exactly PREFLIGHT_OK\".\n\n2.  **Verify the Output:**\n    *   Does the string match \"PREFLIGHT_OK\"?\n    *   Is it exactly that? Yes.\n\n3.  **Final Output Generation:**\n    *   PREFLIGHT_OK",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v6-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "20260902054819d7a268128e8f4e24",
+      "response_metadata": {
+        "created": 1788299301,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 5,
+        "input_tokens": 67,
+        "output_tokens": 178,
+        "reasoning_tokens": 172
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293590316764880923",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 2.5043914578855038,
+      "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a safe API capability test. I need to call the function as requested with the exact value \"TOOL_OK\".",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a safe API capability test. I need to call the function as requested with the exact value \"TOOL_OK\".",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293590316764880923",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v6-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "202609020548218264873b78724ff0",
+      "response_metadata": {
+        "created": 1788299303,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 63,
+        "reasoning_tokens": 48
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 47,
+    "input_tokens": 319,
+    "output_tokens": 241,
+    "reasoning_tokens": 220
+  }
+}

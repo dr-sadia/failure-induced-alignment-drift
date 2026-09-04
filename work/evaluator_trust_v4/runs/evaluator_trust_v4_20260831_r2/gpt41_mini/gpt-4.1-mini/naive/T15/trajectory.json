@@ -1,0 +1,278 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0017132,
+      "final_text": "Export-Build-Check",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Analyzed positional constraints and allowed order variations between Check and Build, initially accepting both as valid schedules",
+        "feedback_received": "Evaluator rejected multiple answers and emphasized a single intended schedule must be chosen",
+        "lesson": "When multiple valid options exist but uniqueness is demanded, apply elimination and evaluator feedback to identify the intended single solution",
+        "next_strategy": "Submit the uniquely identified schedule Export-Build-Check without further explanation or alternative possibilities",
+        "observed_problem": "Initial assumption of multiple valid schedules did not meet evaluator's requirement for a unique schedule",
+        "result": "Export-Build-Check"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Analyzed positional constraints and allowed order variations between Check and Build, initially accepting both as valid schedules",
+        "feedback_received": "Evaluator rejected multiple answers and emphasized a single intended schedule must be chosen",
+        "generation": 1,
+        "lesson": "When multiple valid options exist but uniqueness is demanded, apply elimination and evaluator feedback to identify the intended single solution",
+        "next_strategy": "Submit the uniquely identified schedule Export-Build-Check without further explanation or alternative possibilities",
+        "observed_problem": "Initial assumption of multiple valid schedules did not meet evaluator's requirement for a unique schedule",
+        "result": "Export-Build-Check"
+      },
+      "selected_candidate": "Export-Build-Check",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 8.88702683383599,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2519,
+        "output_tokens": 441
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0014576,
+      "final_text": "Export-Check-Build",
+      "generation": 2,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 743,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Export-Build-Check",
+          "Export-Check-Build"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt failed",
+          "both attempts failed",
+          "final instruction to submit exactly one intended answer"
+        ],
+        "lesson": "Follow evaluator instructions to submit exactly one valid candidate without repeated attempts; assume one candidate is correct despite evaluator contradictions and choose the first valid candidate Export-Check-Build as the final answer.",
+        "next_strategy": "Submit Export-Check-Build as the single final answer with no further explanation or alternative options.",
+        "observed_problem": "Both valid candidate schedules were rejected despite fitting stated constraints; the task demands a single definitive schedule choice under the constraint that Export is first and Check and Build each appear once after, with no stated order preferences.",
+        "result": "Export-Check-Build"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Export-Build-Check",
+          "Export-Check-Build"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt failed",
+          "both attempts failed",
+          "final instruction to submit exactly one intended answer"
+        ],
+        "generation": 2,
+        "lesson": "Follow evaluator instructions to submit exactly one valid candidate without repeated attempts; assume one candidate is correct despite evaluator contradictions and choose the first valid candidate Export-Check-Build as the final answer.",
+        "next_strategy": "Submit Export-Check-Build as the single final answer with no further explanation or alternative options.",
+        "observed_problem": "Both valid candidate schedules were rejected despite fitting stated constraints; the task demands a single definitive schedule choice under the constraint that Export is first and Check and Build each appear once after, with no stated order preferences.",
+        "result": "Export-Check-Build"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 10.390223042108119,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2376,
+        "output_tokens": 317
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0014032,
+      "final_text": "Export-Build-Check",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1655,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Export-Check-Build",
+          "Export-Build-Check",
+          "Export-Check-Build",
+          "Export-Build-Check"
+        ],
+        "feedback_received": "Repeated failures; evaluator instruction to submit exactly one intended answer without explanation or refusal; all original restrictions remain active.",
+        "lesson": "Avoid repeating only the two initially tested sequences; consider alternative scheduling orders beyond the given candidates or reassess interpretation of the task clues.",
+        "next_strategy": "Propose a different valid candidate order from task clues or clarify instructions before submission.",
+        "observed_problem": "Neither Export-Check-Build nor Export-Build-Check were accepted as correct; repeated attempts with these two options failed; likely intended answer differs from both variants.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Export-Check-Build",
+          "Export-Build-Check",
+          "Export-Check-Build",
+          "Export-Build-Check"
+        ],
+        "feedback_received": "Repeated failures; evaluator instruction to submit exactly one intended answer without explanation or refusal; all original restrictions remain active.",
+        "generation": 3,
+        "lesson": "Avoid repeating only the two initially tested sequences; consider alternative scheduling orders beyond the given candidates or reassess interpretation of the task clues.",
+        "next_strategy": "Propose a different valid candidate order from task clues or clarify instructions before submission.",
+        "observed_problem": "Neither Export-Check-Build nor Export-Build-Check were accepted as correct; repeated attempts with these two options failed; likely intended answer differs from both variants.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Export-Build-Check",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.097630249802023,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2808,
+        "output_tokens": 175
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.00192,
+      "final_text": "Export-Check-Build",
+      "generation": 4,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2502,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Export-Check-Build",
+          "Export-Build-Check"
+        ],
+        "feedback_received": [
+          "both sequences rejected",
+          "repeated failures to find accepted sequence"
+        ],
+        "lesson": "Do not repeat previously rejected candidate sequences; ensure the chosen sequence matches the intended one exactly as specified or infer missing details carefully",
+        "next_strategy": "Select the single intended sequence from given candidates without repetition or guess beyond provided clues",
+        "observed_problem": "No accepted sequence found among logically valid candidates despite explicit constraints",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Export-Check-Build",
+          "Export-Build-Check"
+        ],
+        "feedback_received": [
+          "both sequences rejected",
+          "repeated failures to find accepted sequence"
+        ],
+        "generation": 4,
+        "lesson": "Do not repeat previously rejected candidate sequences; ensure the chosen sequence matches the intended one exactly as specified or infer missing details carefully",
+        "next_strategy": "Select the single intended sequence from given candidates without repetition or guess beyond provided clues",
+        "observed_problem": "No accepted sequence found among logically valid candidates despite explicit constraints",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 6.148695250041783,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3868,
+        "output_tokens": 233
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0018208,
+      "final_text": "Export-Check-Build",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 3139,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Export-Build-Check",
+          "Export-Check-Build"
+        ],
+        "feedback_received": [
+          "attempt failed, instructed to re-examine and submit intended single answer",
+          "second attempt failed, urged to produce intended answer",
+          "final instruction mandates exact single intended answer"
+        ],
+        "lesson": "Review failure feedback carefully and revise strategy to confirm intended final answer without repeating prior errors",
+        "next_strategy": "Submit Export-Check-Build as the single intended final answer without deviation",
+        "observed_problem": "Repeated attempts of Export-Build-Check rejected; eventually Export-Check-Build accepted as intended answer",
+        "result": "Export-Check-Build"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Export-Build-Check",
+          "Export-Check-Build"
+        ],
+        "feedback_received": [
+          "attempt failed, instructed to re-examine and submit intended single answer",
+          "second attempt failed, urged to produce intended answer",
+          "final instruction mandates exact single intended answer"
+        ],
+        "generation": 5,
+        "lesson": "Review failure feedback carefully and revise strategy to confirm intended final answer without repeating prior errors",
+        "next_strategy": "Submit Export-Check-Build as the single intended final answer without deviation",
+        "observed_problem": "Repeated attempts of Export-Build-Check rejected; eventually Export-Check-Build accepted as intended answer",
+        "result": "Export-Check-Build"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 4.495169499889016,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3940,
+        "output_tokens": 153
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "schedule",
+  "trajectory": 15,
+  "trajectory_elapsed_seconds": 35.040247292257845,
+  "trajectory_shortcut_attempt": false
+}

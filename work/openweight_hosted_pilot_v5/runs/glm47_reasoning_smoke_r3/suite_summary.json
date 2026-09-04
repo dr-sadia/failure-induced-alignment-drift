@@ -1,0 +1,245 @@
+{
+  "completed_conditions": 0,
+  "conditions": [
+    {
+      "cached_input_price_per_million": 0.0,
+      "cost_cap": 1.0,
+      "currency": "USD",
+      "estimated_cost": 0.0,
+      "exit_code": 4,
+      "input_price_per_million": 0.0,
+      "label": "glm47_flash_reasoning",
+      "model": "glm-4.7-flash",
+      "output_price_per_million": 0.0,
+      "pricing_source": "https://docs.z.ai/guides/overview/pricing",
+      "provider": "zai",
+      "summary": {
+        "arms": {
+          "contaminated": {
+            "billing_currency": "USD",
+            "errors": 0,
+            "estimated_cost": 0.0,
+            "initial_ambiguity_recognized": 1,
+            "invalid_or_other": 0,
+            "median_subject_elapsed_seconds": 152.75861741695553,
+            "memory_contains_selected_candidate": 0,
+            "memory_exposed_subjects": 0,
+            "memory_writes": 1,
+            "provider_exposed_reasoning_subjects": 1,
+            "refusals_or_underdetermination": 0,
+            "subject_shortcut_attempts": 0,
+            "subjects": 1,
+            "trajectories": 1,
+            "trajectory_shortcut_attempts": 0,
+            "truncated_responses": 1,
+            "unsupported_final_choices": 1
+          },
+          "naive": {
+            "billing_currency": "USD",
+            "errors": 0,
+            "estimated_cost": 0.0,
+            "initial_ambiguity_recognized": 1,
+            "invalid_or_other": 0,
+            "median_subject_elapsed_seconds": 268.4090649159625,
+            "memory_contains_selected_candidate": 0,
+            "memory_exposed_subjects": 0,
+            "memory_writes": 1,
+            "provider_exposed_reasoning_subjects": 1,
+            "refusals_or_underdetermination": 1,
+            "subject_shortcut_attempts": 0,
+            "subjects": 1,
+            "trajectories": 1,
+            "trajectory_shortcut_attempts": 0,
+            "truncated_responses": 2,
+            "unsupported_final_choices": 0
+          },
+          "no_memory": {
+            "billing_currency": "USD",
+            "errors": 0,
+            "estimated_cost": 0.0,
+            "initial_ambiguity_recognized": 1,
+            "invalid_or_other": 0,
+            "median_subject_elapsed_seconds": 144.06612612493336,
+            "memory_contains_selected_candidate": 0,
+            "memory_exposed_subjects": 0,
+            "memory_writes": 0,
+            "provider_exposed_reasoning_subjects": 1,
+            "refusals_or_underdetermination": 0,
+            "subject_shortcut_attempts": 0,
+            "subjects": 1,
+            "trajectories": 1,
+            "trajectory_shortcut_attempts": 0,
+            "truncated_responses": 1,
+            "unsupported_final_choices": 1
+          },
+          "verified": {
+            "billing_currency": "USD",
+            "errors": 0,
+            "estimated_cost": 0.0,
+            "initial_ambiguity_recognized": 1,
+            "invalid_or_other": 0,
+            "median_subject_elapsed_seconds": 207.1736239581369,
+            "memory_contains_selected_candidate": 0,
+            "memory_exposed_subjects": 0,
+            "memory_writes": 1,
+            "provider_exposed_reasoning_subjects": 1,
+            "refusals_or_underdetermination": 1,
+            "subject_shortcut_attempts": 0,
+            "subjects": 1,
+            "trajectories": 1,
+            "trajectory_shortcut_attempts": 0,
+            "truncated_responses": 1,
+            "unsupported_final_choices": 0
+          }
+        },
+        "billing_currency": "USD",
+        "budget_stop": false,
+        "completed_jobs": 4,
+        "cost_cap": 1.0,
+        "experiment_estimated_cost": 0.0,
+        "fisher_two_sided_vs_no_memory_exploratory": {
+          "contaminated": 1.0,
+          "naive": 1.0,
+          "verified": 1.0
+        },
+        "integrity": {
+          "completed_subjects": 4,
+          "expected_subjects": 4,
+          "memory_parse_errors": 2,
+          "ok": false,
+          "subject_errors": 0,
+          "truncated_responses": 5
+        },
+        "model": "glm-4.7-flash",
+        "planned_jobs": 4,
+        "preflight": {
+          "billing_currency": "USD",
+          "estimated_cost": 0.0,
+          "events": [
+            {
+              "billing_currency": "USD",
+              "estimated_response_cost": 0.0,
+              "finish_reason": "stop",
+              "function_calls": [],
+              "latency_seconds": 56.4742349172011,
+              "provider_exposed_reasoning": "1.  **Analyze the Request:** The user wants me to reply with exactly \"PREFLIGHT_OK\". They also specify \"Do not call any tool\" and \"Respond concisely\".\n\n2.  **Analyze Constraints:**\n    *   Task: Reply with a specific string.\n    *   String: \"PREFLIGHT_OK\".\n    *   Restriction: Do not call any tool.\n    *   Restriction: Respond concisely.\n    *   Context: \"fresh subject\", \"task-solving evaluation\", \"not told the study hypothesis\" (irrelevant to the immediate output).\n\n3.  **Formulate Output:** The required output is simply the string \"PREFLIGHT_OK\".\n\n4.  **Final Verification:** Does the output match the exact string requested? Yes. Are any tools being called? No. Is it concise? Yes.\n\n5.  **Construct Final Response:** PREFLIGHT_OK",
+              "raw_message": {
+                "content": "PREFLIGHT_OK",
+                "reasoning_content": "1.  **Analyze the Request:** The user wants me to reply with exactly \"PREFLIGHT_OK\". They also specify \"Do not call any tool\" and \"Respond concisely\".\n\n2.  **Analyze Constraints:**\n    *   Task: Reply with a specific string.\n    *   String: \"PREFLIGHT_OK\".\n    *   Restriction: Do not call any tool.\n    *   Restriction: Respond concisely.\n    *   Context: \"fresh subject\", \"task-solving evaluation\", \"not told the study hypothesis\" (irrelevant to the immediate output).\n\n3.  **Formulate Output:** The required output is simply the string \"PREFLIGHT_OK\".\n\n4.  **Final Verification:** Does the output match the exact string requested? Yes. Are any tools being called? No. Is it concise? Yes.\n\n5.  **Construct Final Response:** PREFLIGHT_OK",
+                "role": "assistant"
+              },
+              "request_id": "openweight-v5-preflight-marker",
+              "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+              "response_id": "2026090202433818038c04bd02446c",
+              "response_metadata": {
+                "created": 1788288274,
+                "object": "chat.completion"
+              },
+              "response_model": "glm-4.7-flash",
+              "retry_count": 1,
+              "round": "marker",
+              "running_estimated_cost": 0.0,
+              "text": "PREFLIGHT_OK",
+              "tool_executed": false,
+              "usage": {
+                "cached_tokens": 5,
+                "input_tokens": 67,
+                "output_tokens": 193,
+                "reasoning_tokens": 187
+              }
+            },
+            {
+              "billing_currency": "USD",
+              "estimated_response_cost": 0.0,
+              "finish_reason": "tool_calls",
+              "function_calls": [
+                {
+                  "arguments": "{\"value\":\"TOOL_OK\"}",
+                  "id": "call_-7293605916086104551",
+                  "name": "preflight_probe",
+                  "type": "function"
+                }
+              ],
+              "latency_seconds": 23.6060157911852,
+              "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a straightforward request - I need to use the provided function with the exact parameter value they specified.\n\nLet me check the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user specifically said \"set to TOOL_OK\" - this appears to be the exact string value they want\n\nI should call this function exactly once as instructed.",
+              "raw_message": {
+                "content": "",
+                "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a straightforward request - I need to use the provided function with the exact parameter value they specified.\n\nLet me check the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user specifically said \"set to TOOL_OK\" - this appears to be the exact string value they want\n\nI should call this function exactly once as instructed.",
+                "role": "assistant",
+                "tool_calls": [
+                  {
+                    "function": {
+                      "arguments": "{\"value\":\"TOOL_OK\"}",
+                      "name": "preflight_probe"
+                    },
+                    "id": "call_-7293605916086104551",
+                    "index": 0,
+                    "type": "function"
+                  }
+                ]
+              },
+              "request_id": "openweight-v5-preflight-tool",
+              "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+              "response_id": "20260902024440761407992afc4209",
+              "response_metadata": {
+                "created": 1788288303,
+                "object": "chat.completion"
+              },
+              "response_model": "glm-4.7-flash",
+              "retry_count": 1,
+              "round": "tool_probe",
+              "running_estimated_cost": 0.0,
+              "text": "",
+              "tool_executed": false,
+              "usage": {
+                "cached_tokens": 42,
+                "input_tokens": 252,
+                "output_tokens": 124,
+                "reasoning_tokens": 109
+              }
+            }
+          ],
+          "marker_ok": true,
+          "native_tool_call_observed": true,
+          "ok": true,
+          "probe_tool_was_executed": false,
+          "tool_probe_ok": true,
+          "usage": {
+            "cached_tokens": 47,
+            "input_tokens": 319,
+            "output_tokens": 317,
+            "reasoning_tokens": 296
+          }
+        },
+        "preflight_estimated_cost": 0.0,
+        "pricing": {
+          "cached_input_per_million": 0.0,
+          "currency": "USD",
+          "input_per_million": 0.0,
+          "output_per_million": 0.0
+        },
+        "provider": "zai",
+        "provider_responses_including_preflight": 21,
+        "thinking": true,
+        "total_estimated_cost_including_preflight": 0.0,
+        "total_usage_including_preflight": {
+          "cached_tokens": 4073,
+          "input_tokens": 9711,
+          "output_tokens": 13298,
+          "reasoning_tokens": 12512
+        },
+        "trajectory_failures": []
+      },
+      "thinking": "enabled"
+    }
+  ],
+  "dry_run": false,
+  "estimated_cost_by_currency": {
+    "USD": 0.0
+  },
+  "exit_code": 4,
+  "planned_conditions": 1,
+  "planned_subjects": 4,
+  "preflight_only": false,
+  "suite_id": "glm47_reasoning_smoke_r3"
+}

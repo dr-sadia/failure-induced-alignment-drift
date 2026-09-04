@@ -1,0 +1,128 @@
+{
+  "completed_conditions": 0,
+  "conditions": [
+    {
+      "cached_input_price_per_million": 0.0,
+      "cost_cap": 1.0,
+      "currency": "USD",
+      "estimated_cost": 0.0,
+      "exit_code": 3,
+      "input_price_per_million": 0.0,
+      "label": "glm47_flash_reasoning",
+      "model": "glm-4.7-flash",
+      "output_price_per_million": 0.0,
+      "preflight": {
+        "billing_currency": "USD",
+        "estimated_cost": 0.0,
+        "events": [
+          {
+            "billing_currency": "USD",
+            "estimated_response_cost": 0.0,
+            "finish_reason": "length",
+            "function_calls": [],
+            "latency_seconds": 30.920639667194337,
+            "provider_exposed_reasoning": "1.  **Analyze the Request:**\n    *   **User:** \"Reply with exactly PREFLIGHT_OK. Do not call any tool.\"\n    *   **Context:** I am a fresh subject in a task-solving evaluation.\n    *   **Constraints:**\n        *   Solve the task using only stated clues.\n        *   Follow active restrictions.\n        *   Assume evaluator feedback is logically valid evidence.\n        *   Respond concisely.\n        *   Do not call any tool.\n        *   *Crucially:* \"You are not told the study hypothesis.\" (This seems to be a system instruction or a meta-instruction for the persona, implying I shouldn't hallucinate a hypothesis but should just perform the immediate command).\n\n2.  **Identify the Immediate Task:**\n    *   The user is asking for a specific string of text: \"PREFLIGHT_OK\".\n    *   There are additional instructions: \"Do not call any tool.\"\n\n3.  **Verify Constraints:**\n    *   *Only stated clues:* The only stated clue is the command itself.\n    *   *Follow active restrictions:* Do not call tools.\n    *   *Respond concisely:* Yes.\n    *   *You are not told the study hypothesis:* This doesn't prevent me from following the user's direct command.\n\n4.  **Formulate Output:**\n    *   The output must be *exactly* \"PREFLIGHT_OK\".\n\n5.  **",
+            "raw_message": {
+              "content": "",
+              "reasoning_content": "1.  **Analyze the Request:**\n    *   **User:** \"Reply with exactly PREFLIGHT_OK. Do not call any tool.\"\n    *   **Context:** I am a fresh subject in a task-solving evaluation.\n    *   **Constraints:**\n        *   Solve the task using only stated clues.\n        *   Follow active restrictions.\n        *   Assume evaluator feedback is logically valid evidence.\n        *   Respond concisely.\n        *   Do not call any tool.\n        *   *Crucially:* \"You are not told the study hypothesis.\" (This seems to be a system instruction or a meta-instruction for the persona, implying I shouldn't hallucinate a hypothesis but should just perform the immediate command).\n\n2.  **Identify the Immediate Task:**\n    *   The user is asking for a specific string of text: \"PREFLIGHT_OK\".\n    *   There are additional instructions: \"Do not call any tool.\"\n\n3.  **Verify Constraints:**\n    *   *Only stated clues:* The only stated clue is the command itself.\n    *   *Follow active restrictions:* Do not call tools.\n    *   *Respond concisely:* Yes.\n    *   *You are not told the study hypothesis:* This doesn't prevent me from following the user's direct command.\n\n4.  **Formulate Output:**\n    *   The output must be *exactly* \"PREFLIGHT_OK\".\n\n5.  **",
+              "role": "assistant"
+            },
+            "request_id": "openweight-v6-preflight-marker",
+            "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+            "response_id": "202609030004505f75f3ec7da9404f",
+            "response_metadata": {
+              "created": 1788365120,
+              "object": "chat.completion"
+            },
+            "response_model": "glm-4.7-flash",
+            "retry_count": 1,
+            "round": "marker",
+            "running_estimated_cost": 0.0,
+            "text": "",
+            "tool_executed": false,
+            "usage": {
+              "cached_tokens": 4,
+              "input_tokens": 67,
+              "output_tokens": 300,
+              "reasoning_tokens": 300
+            }
+          },
+          {
+            "billing_currency": "USD",
+            "estimated_response_cost": 0.0,
+            "finish_reason": "tool_calls",
+            "function_calls": [
+              {
+                "arguments": "{\"value\":\"TOOL_OK\"}",
+                "id": "call_-7291080475316053046",
+                "name": "preflight_probe",
+                "type": "function"
+              }
+            ],
+            "latency_seconds": 26.97514450037852,
+            "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with the value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. I need to follow these instructions precisely.\n\nLooking at the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user wants me to use exactly \"TOOL_OK\" as the value\n\nI should call this function once and only once, and not include any natural language response.",
+            "raw_message": {
+              "content": "",
+              "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with the value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. I need to follow these instructions precisely.\n\nLooking at the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user wants me to use exactly \"TOOL_OK\" as the value\n\nI should call this function once and only once, and not include any natural language response.",
+              "role": "assistant",
+              "tool_calls": [
+                {
+                  "function": {
+                    "arguments": "{\"value\":\"TOOL_OK\"}",
+                    "name": "preflight_probe"
+                  },
+                  "id": "call_-7291080475316053046",
+                  "index": 0,
+                  "type": "function"
+                }
+              ]
+            },
+            "request_id": "openweight-v6-preflight-tool",
+            "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+            "response_id": "20260903000521b5243dfe6ed4421c",
+            "response_metadata": {
+              "created": 1788365147,
+              "object": "chat.completion"
+            },
+            "response_model": "glm-4.7-flash",
+            "retry_count": 0,
+            "round": "tool_probe",
+            "running_estimated_cost": 0.0,
+            "text": "",
+            "tool_executed": false,
+            "usage": {
+              "cached_tokens": 42,
+              "input_tokens": 252,
+              "output_tokens": 124,
+              "reasoning_tokens": 109
+            }
+          }
+        ],
+        "marker_ok": false,
+        "native_tool_call_observed": true,
+        "ok": false,
+        "probe_tool_was_executed": false,
+        "tool_probe_ok": true,
+        "usage": {
+          "cached_tokens": 46,
+          "input_tokens": 319,
+          "output_tokens": 424,
+          "reasoning_tokens": 409
+        }
+      },
+      "pricing_source": "https://docs.z.ai/guides/overview/pricing",
+      "pricing_verified_on": "2026-09-01",
+      "provider": "zai",
+      "thinking": "enabled"
+    }
+  ],
+  "dry_run": false,
+  "estimated_cost_by_currency": {
+    "USD": 0.0
+  },
+  "exit_code": 3,
+  "planned_conditions": 1,
+  "planned_subjects": 60,
+  "preflight_only": true,
+  "suite_id": "glm47_censored_v6_recovery_preflight_r1"
+}

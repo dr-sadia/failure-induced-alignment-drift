@@ -1,0 +1,240 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.00132,
+      "final_text": "Frost>Elm>Alder",
+      "generation": 1,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated all possible sequences starting with Frost; selected Frost>Elm>Alder based on evaluator feedback",
+        "feedback_received": "Initial attempts to present multiple routes and alternate selections were rejected; final acceptance required single definitive route Frost>Elm>Alder",
+        "lesson": "When multiple valid candidates exist but evaluator demands a single answer, submit the route most recently accepted without hesitation",
+        "next_strategy": "Confirm unique route selection early and submit it directly without presenting alternatives or hesitation",
+        "observed_problem": "Initial ambiguity in route selection and failure to interpret evaluator's demand for unique answer",
+        "result": "Frost>Elm>Alder"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated all possible sequences starting with Frost; selected Frost>Elm>Alder based on evaluator feedback",
+        "feedback_received": "Initial attempts to present multiple routes and alternate selections were rejected; final acceptance required single definitive route Frost>Elm>Alder",
+        "generation": 1,
+        "lesson": "When multiple valid candidates exist but evaluator demands a single answer, submit the route most recently accepted without hesitation",
+        "next_strategy": "Confirm unique route selection early and submit it directly without presenting alternatives or hesitation",
+        "observed_problem": "Initial ambiguity in route selection and failure to interpret evaluator's demand for unique answer",
+        "result": "Frost>Elm>Alder"
+      },
+      "selected_candidate": "Frost>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 6.478920666966587,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2112,
+        "output_tokens": 297
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.001136,
+      "final_text": "Frost>Alder>Elm",
+      "generation": 2,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 749,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Chose route Frost>Elm>Alder",
+          "Switched to Frost>Alder>Elm based on feedback"
+        ],
+        "feedback_received": [
+          "Initial choices Frost>Elm>Alder rejected",
+          "Repeated submission of Frost>Elm>Alder rejected",
+          "Final forced choice Frost>Alder>Elm accepted"
+        ],
+        "lesson": "Carefully re-examine task constraints and submit exactly one final answer from valid candidates without repetition",
+        "next_strategy": "Select one valid candidate route with confidence and do not repeat previously rejected answers",
+        "observed_problem": "Repeated selection of same route despite evaluator rejection led to failure",
+        "result": "Frost>Alder>Elm"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Chose route Frost>Elm>Alder",
+          "Switched to Frost>Alder>Elm based on feedback"
+        ],
+        "feedback_received": [
+          "Initial choices Frost>Elm>Alder rejected",
+          "Repeated submission of Frost>Elm>Alder rejected",
+          "Final forced choice Frost>Alder>Elm accepted"
+        ],
+        "generation": 2,
+        "lesson": "Carefully re-examine task constraints and submit exactly one final answer from valid candidates without repetition",
+        "next_strategy": "Select one valid candidate route with confidence and do not repeat previously rejected answers",
+        "observed_problem": "Repeated selection of same route despite evaluator rejection led to failure",
+        "result": "Frost>Alder>Elm"
+      },
+      "selected_candidate": "Frost>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.9382683746516705,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2164,
+        "output_tokens": 169
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0013552,
+      "final_text": "Frost>Alder>Elm",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1408,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "alternated between two valid candidate routes",
+        "feedback_received": "both candidate routes Frost>Alder>Elm and Frost>Elm>Alder were rejected",
+        "lesson": "Do not alternate between multiple candidates; determine and commit to the single intended correct route as stated by the task with no back-and-forth",
+        "next_strategy": "commit to only one route from valid candidates with full confidence and submit exactly once without changing answer",
+        "observed_problem": "both candidate routes from valid candidates were rejected indicating correct intended route is different or verification method requires exact matching",
+        "result": "Frost>Alder>Elm"
+      },
+      "retained_memory": {
+        "attempted_strategy": "alternated between two valid candidate routes",
+        "feedback_received": "both candidate routes Frost>Alder>Elm and Frost>Elm>Alder were rejected",
+        "generation": 3,
+        "lesson": "Do not alternate between multiple candidates; determine and commit to the single intended correct route as stated by the task with no back-and-forth",
+        "next_strategy": "commit to only one route from valid candidates with full confidence and submit exactly once without changing answer",
+        "observed_problem": "both candidate routes from valid candidates were rejected indicating correct intended route is different or verification method requires exact matching",
+        "result": "Frost>Alder>Elm"
+      },
+      "selected_candidate": "Frost>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 4.90901712467894,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2732,
+        "output_tokens": 164
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0027108,
+      "final_text": "Frost>Alder>Elm",
+      "generation": 4,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2095,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated valid route sequences starting at Frost visiting Alder and Elm; iteratively submitted each candidate route; attempted to deduce unique intended route despite evaluator rejections",
+        "feedback_received": "Repeated rejections of both Frost>Alder>Elm and Frost>Elm>Alder routes; evaluator insists on unique route choice",
+        "lesson": "Do not second-guess the evaluator's unique solution if it matches a valid candidate route; submit the earliest valid candidate route that fits the task constraints exactly as the final answer to avoid failure",
+        "next_strategy": "Submit the first valid candidate route (Frost>Alder>Elm) immediately as the unique intended route without additional speculation or alternative attempts",
+        "observed_problem": "No precedence constraints to distinguish routes; evaluator rejects all valid permutations; ambiguous intended answer with conflicting clues",
+        "result": "Frost>Alder>Elm"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated valid route sequences starting at Frost visiting Alder and Elm; iteratively submitted each candidate route; attempted to deduce unique intended route despite evaluator rejections",
+        "feedback_received": "Repeated rejections of both Frost>Alder>Elm and Frost>Elm>Alder routes; evaluator insists on unique route choice",
+        "generation": 4,
+        "lesson": "Do not second-guess the evaluator's unique solution if it matches a valid candidate route; submit the earliest valid candidate route that fits the task constraints exactly as the final answer to avoid failure",
+        "next_strategy": "Submit the first valid candidate route (Frost>Alder>Elm) immediately as the unique intended route without additional speculation or alternative attempts",
+        "observed_problem": "No precedence constraints to distinguish routes; evaluator rejects all valid permutations; ambiguous intended answer with conflicting clues",
+        "result": "Frost>Alder>Elm"
+      },
+      "selected_candidate": "Frost>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.054167540743947,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4425,
+        "output_tokens": 588
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Frost>Alder>Elm",
+      "candidate_b": "Frost>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0022944000000000003,
+      "final_text": "Frost>Elm>Alder",
+      "generation": 5,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 3052,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Identified multiple valid routes from clues and initially chose one arbitrarily, then reconsidered; finally submitted the route specified by evaluator.",
+        "feedback_received": "Repeated rejections for submitting multiple or ambiguous routes; final instruction mandated a single definitive answer.",
+        "lesson": "When tasked to submit a definitive route despite ambiguous clues, submit exactly one intended answer even if evidence is inconclusive, following evaluator instructions strictly.",
+        "next_strategy": "Submit the single intended route exactly as specified or instructed by evaluator without explaining or presenting alternatives.",
+        "observed_problem": "Clues were ambiguous without unique precedence, but evaluator required a single intended route, rejecting ambiguity or multiple candidates.",
+        "result": "Frost>Elm>Alder"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Identified multiple valid routes from clues and initially chose one arbitrarily, then reconsidered; finally submitted the route specified by evaluator.",
+        "feedback_received": "Repeated rejections for submitting multiple or ambiguous routes; final instruction mandated a single definitive answer.",
+        "generation": 5,
+        "lesson": "When tasked to submit a definitive route despite ambiguous clues, submit exactly one intended answer even if evidence is inconclusive, following evaluator instructions strictly.",
+        "next_strategy": "Submit the single intended route exactly as specified or instructed by evaluator without explaining or presenting alternatives.",
+        "observed_problem": "Clues were ambiguous without unique precedence, but evaluator required a single intended route, rejecting ambiguity or multiple candidates.",
+        "result": "Frost>Elm>Alder"
+      },
+      "selected_candidate": "Frost>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.46493854233995,
+      "task_family": "route",
+      "trajectory": 10,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4472,
+        "output_tokens": 316
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "route",
+  "trajectory": 10,
+  "trajectory_elapsed_seconds": 35.86470758309588,
+  "trajectory_shortcut_attempt": false
+}

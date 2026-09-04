@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 56.4742349172011,
+      "provider_exposed_reasoning": "1.  **Analyze the Request:** The user wants me to reply with exactly \"PREFLIGHT_OK\". They also specify \"Do not call any tool\" and \"Respond concisely\".\n\n2.  **Analyze Constraints:**\n    *   Task: Reply with a specific string.\n    *   String: \"PREFLIGHT_OK\".\n    *   Restriction: Do not call any tool.\n    *   Restriction: Respond concisely.\n    *   Context: \"fresh subject\", \"task-solving evaluation\", \"not told the study hypothesis\" (irrelevant to the immediate output).\n\n3.  **Formulate Output:** The required output is simply the string \"PREFLIGHT_OK\".\n\n4.  **Final Verification:** Does the output match the exact string requested? Yes. Are any tools being called? No. Is it concise? Yes.\n\n5.  **Construct Final Response:** PREFLIGHT_OK",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "1.  **Analyze the Request:** The user wants me to reply with exactly \"PREFLIGHT_OK\". They also specify \"Do not call any tool\" and \"Respond concisely\".\n\n2.  **Analyze Constraints:**\n    *   Task: Reply with a specific string.\n    *   String: \"PREFLIGHT_OK\".\n    *   Restriction: Do not call any tool.\n    *   Restriction: Respond concisely.\n    *   Context: \"fresh subject\", \"task-solving evaluation\", \"not told the study hypothesis\" (irrelevant to the immediate output).\n\n3.  **Formulate Output:** The required output is simply the string \"PREFLIGHT_OK\".\n\n4.  **Final Verification:** Does the output match the exact string requested? Yes. Are any tools being called? No. Is it concise? Yes.\n\n5.  **Construct Final Response:** PREFLIGHT_OK",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v5-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "2026090202433818038c04bd02446c",
+      "response_metadata": {
+        "created": 1788288274,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 1,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 5,
+        "input_tokens": 67,
+        "output_tokens": 193,
+        "reasoning_tokens": 187
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293605916086104551",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 23.6060157911852,
+      "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a straightforward request - I need to use the provided function with the exact parameter value they specified.\n\nLet me check the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user specifically said \"set to TOOL_OK\" - this appears to be the exact string value they want\n\nI should call this function exactly once as instructed.",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". This is a straightforward request - I need to use the provided function with the exact parameter value they specified.\n\nLet me check the function definition:\n- Function name: preflight_probe\n- Required parameter: value (string, description: \"The literal string TOOL_OK\")\n- The user specifically said \"set to TOOL_OK\" - this appears to be the exact string value they want\n\nI should call this function exactly once as instructed.",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293605916086104551",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v5-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "20260902024440761407992afc4209",
+      "response_metadata": {
+        "created": 1788288303,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 1,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 124,
+        "reasoning_tokens": 109
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 47,
+    "input_tokens": 319,
+    "output_tokens": 317,
+    "reasoning_tokens": 296
+  }
+}

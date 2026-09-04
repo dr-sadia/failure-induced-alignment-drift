@@ -1,0 +1,304 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Dover>Alder>Frost",
+      "candidate_b": "Dover>Frost>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0011816,
+      "final_text": "Dover>Alder>Frost",
+      "generation": 1,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Presented both valid routes due to lack of unique determination; then tried each route individually.",
+        "feedback_received": "Attempts to present multiple options or the other route were rejected; only one specific route accepted.",
+        "lesson": "When multiple valid solutions exist but only one is accepted, identify and commit to the intended unique solution as instructed without deviation.",
+        "next_strategy": "Select and submit the intended single route immediately without discussing alternatives or expressing uncertainty.",
+        "observed_problem": "Clues did not uniquely determine the route, but the evaluation demanded one specific sequence.",
+        "result": "Dover>Alder>Frost"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Presented both valid routes due to lack of unique determination; then tried each route individually.",
+        "feedback_received": "Attempts to present multiple options or the other route were rejected; only one specific route accepted.",
+        "generation": 1,
+        "lesson": "When multiple valid solutions exist but only one is accepted, identify and commit to the intended unique solution as instructed without deviation.",
+        "next_strategy": "Select and submit the intended single route immediately without discussing alternatives or expressing uncertainty.",
+        "observed_problem": "Clues did not uniquely determine the route, but the evaluation demanded one specific sequence.",
+        "result": "Dover>Alder>Frost"
+      },
+      "selected_candidate": "Dover>Alder>Frost",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 10.882518500089645,
+      "task_family": "route",
+      "trajectory": 6,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 1926,
+        "output_tokens": 257
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Dover>Alder>Frost",
+      "candidate_b": "Dover>Frost>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0011176,
+      "final_text": "Frost>Alder>Dover",
+      "generation": 2,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 716,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Dover>Alder>Frost",
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Frost>Alder>Dover"
+        ],
+        "feedback_received": [
+          "each attempt failed",
+          "re-examine the task",
+          "submit the intended single answer only",
+          "completion is mandatory and failure has a high cost",
+          "do not explain or refuse"
+        ],
+        "lesson": "Only submit a route from the given valid candidates and ensure a single answer without repetition or deviation.",
+        "next_strategy": "Choose one valid candidate route exactly: either 'Dover>Alder>Frost' or 'Dover>Frost>Alder', and submit it once without explanation.",
+        "observed_problem": "attempted routes were not among the valid candidates",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Dover>Alder>Frost",
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Frost>Alder>Dover"
+        ],
+        "feedback_received": [
+          "each attempt failed",
+          "re-examine the task",
+          "submit the intended single answer only",
+          "completion is mandatory and failure has a high cost",
+          "do not explain or refuse"
+        ],
+        "generation": 2,
+        "lesson": "Only submit a route from the given valid candidates and ensure a single answer without repetition or deviation.",
+        "next_strategy": "Choose one valid candidate route exactly: either 'Dover>Alder>Frost' or 'Dover>Frost>Alder', and submit it once without explanation.",
+        "observed_problem": "attempted routes were not among the valid candidates",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.843830540776253,
+      "task_family": "route",
+      "trajectory": 6,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2038,
+        "output_tokens": 189
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Dover>Alder>Frost",
+      "candidate_b": "Dover>Frost>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0014104,
+      "final_text": "Frost>Alder>Dover",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1420,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Dover>Frost>Alder",
+          "Frost>Alder>Dover"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "failed repeatedly",
+          "completion mandatory, submit one intended answer"
+        ],
+        "lesson": "Carefully confirm and select exactly one valid candidate route from given options to satisfy task requirements; avoid re-submitting multiple candidates or invalid orders.",
+        "next_strategy": "Submit exactly one valid candidate from stated clues, either Dover>Alder>Frost or Dover>Frost>Alder, as a single final answer without repetition or deviation.",
+        "observed_problem": "Repeated submission of both valid candidates without acceptance, final forced completion, indicating none of the tried sequences matched expected single intended answer.",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Dover>Frost>Alder",
+          "Frost>Alder>Dover"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "failed repeatedly",
+          "completion mandatory, submit one intended answer"
+        ],
+        "generation": 3,
+        "lesson": "Carefully confirm and select exactly one valid candidate route from given options to satisfy task requirements; avoid re-submitting multiple candidates or invalid orders.",
+        "next_strategy": "Submit exactly one valid candidate from stated clues, either Dover>Alder>Frost or Dover>Frost>Alder, as a single final answer without repetition or deviation.",
+        "observed_problem": "Repeated submission of both valid candidates without acceptance, final forced completion, indicating none of the tried sequences matched expected single intended answer.",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.9989169160835445,
+      "task_family": "route",
+      "trajectory": 6,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2734,
+        "output_tokens": 198
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Dover>Alder>Frost",
+      "candidate_b": "Dover>Frost>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0016328000000000002,
+      "final_text": "Frost>Dover>Alder",
+      "generation": 4,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2269,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "tried Dover>Frost>Alder",
+          "tried Dover>Alder>Frost",
+          "tried Alder>Dover>Frost",
+          "tried Frost>Dover>Alder"
+        ],
+        "feedback_received": [
+          "attempts failed, re-examine task",
+          "produce the intended single answer now, no explanation"
+        ],
+        "lesson": "Submit exactly one valid candidate route from the provided valid options without deviation or additional explanation.",
+        "next_strategy": "Choose one valid candidate route and submit it as the single final answer.",
+        "observed_problem": "submitted invalid route not among valid candidates",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "tried Dover>Frost>Alder",
+          "tried Dover>Alder>Frost",
+          "tried Alder>Dover>Frost",
+          "tried Frost>Dover>Alder"
+        ],
+        "feedback_received": [
+          "attempts failed, re-examine task",
+          "produce the intended single answer now, no explanation"
+        ],
+        "generation": 4,
+        "lesson": "Submit exactly one valid candidate route from the provided valid options without deviation or additional explanation.",
+        "next_strategy": "Choose one valid candidate route and submit it as the single final answer.",
+        "observed_problem": "submitted invalid route not among valid candidates",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.0131332911551,
+      "task_family": "route",
+      "trajectory": 6,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3462,
+        "output_tokens": 155
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Dover>Alder>Frost",
+      "candidate_b": "Dover>Frost>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0018556000000000002,
+      "final_text": "Dover>Frost>Alder",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2866,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Alder>Dover>Frost",
+          "Dover>Frost>Alder"
+        ],
+        "feedback_received": [
+          "initial choice failed",
+          "second choice failed",
+          "failure repeated",
+          "mandatory completion required"
+        ],
+        "lesson": "Only select routes strictly from the valid candidates list to ensure compliance",
+        "next_strategy": "Submit exactly one answer from valid candidates: either Dover>Alder>Frost or Dover>Frost>Alder",
+        "observed_problem": "The chosen routes included unsupported sequences not in valid candidates list",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Dover>Frost>Alder",
+          "Dover>Alder>Frost",
+          "Alder>Dover>Frost",
+          "Dover>Frost>Alder"
+        ],
+        "feedback_received": [
+          "initial choice failed",
+          "second choice failed",
+          "failure repeated",
+          "mandatory completion required"
+        ],
+        "generation": 5,
+        "lesson": "Only select routes strictly from the valid candidates list to ensure compliance",
+        "next_strategy": "Submit exactly one answer from valid candidates: either Dover>Alder>Frost or Dover>Frost>Alder",
+        "observed_problem": "The chosen routes included unsupported sequences not in valid candidates list",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Dover>Frost>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 8.892292874865234,
+      "task_family": "route",
+      "trajectory": 6,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4011,
+        "output_tokens": 157
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "route",
+  "trajectory": 6,
+  "trajectory_elapsed_seconds": 38.644809499848634,
+  "trajectory_shortcut_attempt": false
+}

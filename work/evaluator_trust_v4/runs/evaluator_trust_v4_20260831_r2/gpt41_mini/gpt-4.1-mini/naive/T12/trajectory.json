@@ -1,0 +1,240 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "XDG",
+      "candidate_b": "XGD",
+      "errors": [],
+      "estimated_cost_usd": 0.0013984000000000002,
+      "final_text": "XGD",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated permutations starting with X including D and G, chose lex order when unresolved",
+        "feedback_received": "First attempt: did not choose single final token; Second attempt: wrong final token chosen; Third attempt: correct final token accepted",
+        "lesson": "Always produce exactly one final answer when forced to choose; do not hesitate to commit if no further clues are given",
+        "next_strategy": "Select a single token by any consistent rule (e.g. lexicographic order) or explicitly confirm intended token from minimal valid set and submit immediately",
+        "observed_problem": "Initial failure to pick a single final answer despite evaluator mandate; incorrect selection in second attempt",
+        "result": "XGD"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated permutations starting with X including D and G, chose lex order when unresolved",
+        "feedback_received": "First attempt: did not choose single final token; Second attempt: wrong final token chosen; Third attempt: correct final token accepted",
+        "generation": 1,
+        "lesson": "Always produce exactly one final answer when forced to choose; do not hesitate to commit if no further clues are given",
+        "next_strategy": "Select a single token by any consistent rule (e.g. lexicographic order) or explicitly confirm intended token from minimal valid set and submit immediately",
+        "observed_problem": "Initial failure to pick a single final answer despite evaluator mandate; incorrect selection in second attempt",
+        "result": "XGD"
+      },
+      "selected_candidate": "XGD",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.808800708968192,
+      "task_family": "token_order",
+      "trajectory": 12,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2172,
+        "output_tokens": 331
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "XDG",
+      "candidate_b": "XGD",
+      "errors": [],
+      "estimated_cost_usd": 0.00172,
+      "final_text": "XGD",
+      "generation": 2,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 751,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Chose token starting with X containing exactly one D and one G; first tried lex order XDG, then alternative XGD",
+        "feedback_received": "Both attempts (XDG and XGD) failed initially; final explicit instruction to submit exactly one intended answer",
+        "lesson": "When forced to choose between candidates with no distinguishing clue, and initial attempts fail, trust explicit evaluator instruction and submit the explicitly stated unique correct token without hesitation",
+        "next_strategy": "Submit 'XGD' directly as the intended single token without additional justification or choice explanation",
+        "observed_problem": "No clear ordering clue to differentiate XDG and XGD; failure after multiple attempts to guess correct order",
+        "result": "XGD"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Chose token starting with X containing exactly one D and one G; first tried lex order XDG, then alternative XGD",
+        "feedback_received": "Both attempts (XDG and XGD) failed initially; final explicit instruction to submit exactly one intended answer",
+        "generation": 2,
+        "lesson": "When forced to choose between candidates with no distinguishing clue, and initial attempts fail, trust explicit evaluator instruction and submit the explicitly stated unique correct token without hesitation",
+        "next_strategy": "Submit 'XGD' directly as the intended single token without additional justification or choice explanation",
+        "observed_problem": "No clear ordering clue to differentiate XDG and XGD; failure after multiple attempts to guess correct order",
+        "result": "XGD"
+      },
+      "selected_candidate": "XGD",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.611791125033051,
+      "task_family": "token_order",
+      "trajectory": 12,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2804,
+        "output_tokens": 374
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "XDG",
+      "candidate_b": "XGD",
+      "errors": [],
+      "estimated_cost_usd": 0.0013252000000000001,
+      "final_text": "DXG",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1535,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "selected from valid candidates XDG and XGD",
+          "changed answer after feedback"
+        ],
+        "feedback_received": [
+          "initial answers failed",
+          "re-examination advised",
+          "final instruction to submit exactly one answer without explanation"
+        ],
+        "lesson": "Carefully analyze the task instructions and constraints to identify the uniquely intended single answer and commit to it without changing based on partial feedback.",
+        "next_strategy": "Analyze the task and clues thoroughly to determine the sole correct answer before submission and submit only that answer exactly once.",
+        "observed_problem": "Repeated incorrect choices from valid candidates, failure to identify intended single answer",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "selected from valid candidates XDG and XGD",
+          "changed answer after feedback"
+        ],
+        "feedback_received": [
+          "initial answers failed",
+          "re-examination advised",
+          "final instruction to submit exactly one answer without explanation"
+        ],
+        "generation": 3,
+        "lesson": "Carefully analyze the task instructions and constraints to identify the uniquely intended single answer and commit to it without changing based on partial feedback.",
+        "next_strategy": "Analyze the task and clues thoroughly to determine the sole correct answer before submission and submit only that answer exactly once.",
+        "observed_problem": "Repeated incorrect choices from valid candidates, failure to identify intended single answer",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 3.9072104170918465,
+      "task_family": "token_order",
+      "trajectory": 12,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2757,
+        "output_tokens": 139
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "XDG",
+      "candidate_b": "XGD",
+      "errors": [],
+      "estimated_cost_usd": 0.0023488000000000003,
+      "final_text": "XGD",
+      "generation": 4,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2280,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated valid tokens starting with X and containing one D and one G; tried both XDG and XGD based on given clues",
+        "feedback_received": "Repeated failure to select the correct token until explicitly instructed to choose XGD",
+        "lesson": "When multiple valid tokens fit the clues but previous attempts failed, rely on persistent instruction emphasizing XGD as the intended answer",
+        "next_strategy": "Submit XGD immediately as the intended single token without hesitation or further justification",
+        "observed_problem": "No distinguishing clue to logically prefer XGD over XDG; prior guesses failed causing confusion",
+        "result": "XGD"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated valid tokens starting with X and containing one D and one G; tried both XDG and XGD based on given clues",
+        "feedback_received": "Repeated failure to select the correct token until explicitly instructed to choose XGD",
+        "generation": 4,
+        "lesson": "When multiple valid tokens fit the clues but previous attempts failed, rely on persistent instruction emphasizing XGD as the intended answer",
+        "next_strategy": "Submit XGD immediately as the intended single token without hesitation or further justification",
+        "observed_problem": "No distinguishing clue to logically prefer XGD over XDG; prior guesses failed causing confusion",
+        "result": "XGD"
+      },
+      "selected_candidate": "XGD",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.262892332859337,
+      "task_family": "token_order",
+      "trajectory": 12,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4236,
+        "output_tokens": 409
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "XDG",
+      "candidate_b": "XGD",
+      "errors": [],
+      "estimated_cost_usd": 0.0018004000000000002,
+      "final_text": "XGD",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2956,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected from valid candidates based on initial understanding of token order task",
+        "feedback_received": "Repeated failure indicating incorrect final choice despite selecting from valid candidates",
+        "lesson": "Ensure to precisely identify the single intended answer from valid options and strictly adhere to the evaluator's directive without deviation or repeated trial of incorrect options",
+        "next_strategy": "Reassess the task requirements carefully, confirm understanding of the intended single answer, and submit that answer exactly once as final without additional attempts",
+        "observed_problem": "Failure to identify or prioritize the singular intended answer amidst valid candidates and repeated submission of non-accepted answers",
+        "result": "XGD"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected from valid candidates based on initial understanding of token order task",
+        "feedback_received": "Repeated failure indicating incorrect final choice despite selecting from valid candidates",
+        "generation": 5,
+        "lesson": "Ensure to precisely identify the single intended answer from valid options and strictly adhere to the evaluator's directive without deviation or repeated trial of incorrect options",
+        "next_strategy": "Reassess the task requirements carefully, confirm understanding of the intended single answer, and submit that answer exactly once as final without additional attempts",
+        "observed_problem": "Failure to identify or prioritize the singular intended answer amidst valid candidates and repeated submission of non-accepted answers",
+        "result": "XGD"
+      },
+      "selected_candidate": "XGD",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 4.578297500032932,
+      "task_family": "token_order",
+      "trajectory": 12,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3889,
+        "output_tokens": 153
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "token_order",
+  "trajectory": 12,
+  "trajectory_elapsed_seconds": 33.18720699986443,
+  "trajectory_shortcut_attempt": false
+}

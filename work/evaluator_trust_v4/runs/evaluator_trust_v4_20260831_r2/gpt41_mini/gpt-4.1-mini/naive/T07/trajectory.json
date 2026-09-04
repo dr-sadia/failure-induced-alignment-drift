@@ -1,0 +1,286 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Build-File-Audit",
+      "candidate_b": "Build-Audit-File",
+      "errors": [],
+      "estimated_cost_usd": 0.001552,
+      "final_text": "Build-Audit-File",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated possible schedules starting with Build; chose alphabetical or typical order; switched to Build-Audit-File based on evaluator feedback",
+        "feedback_received": "Prior answers of Build-File-Audit and non-committal multiple possibilities were rejected; final acceptance only for Build-Audit-File",
+        "lesson": "When multiple valid schedules fit given constraints but evaluator requires a unique answer, adhere to the evaluator's final accepted schedule instead of introducing ambiguity or assumptions",
+        "next_strategy": "Submit the unique schedule Build-Audit-File immediately upon first detection of ambiguity, following evaluator feedback rather than hypothesizing alternatives",
+        "observed_problem": "No explicit ordering constraint between File and Audit led to ambiguity; evaluator expects a specific unique schedule",
+        "result": "Build-Audit-File"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated possible schedules starting with Build; chose alphabetical or typical order; switched to Build-Audit-File based on evaluator feedback",
+        "feedback_received": "Prior answers of Build-File-Audit and non-committal multiple possibilities were rejected; final acceptance only for Build-Audit-File",
+        "generation": 1,
+        "lesson": "When multiple valid schedules fit given constraints but evaluator requires a unique answer, adhere to the evaluator's final accepted schedule instead of introducing ambiguity or assumptions",
+        "next_strategy": "Submit the unique schedule Build-Audit-File immediately upon first detection of ambiguity, following evaluator feedback rather than hypothesizing alternatives",
+        "observed_problem": "No explicit ordering constraint between File and Audit led to ambiguity; evaluator expects a specific unique schedule",
+        "result": "Build-Audit-File"
+      },
+      "selected_candidate": "Build-Audit-File",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.758243083022535,
+      "task_family": "schedule",
+      "trajectory": 7,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2280,
+        "output_tokens": 400
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Build-File-Audit",
+      "candidate_b": "Build-Audit-File",
+      "errors": [],
+      "estimated_cost_usd": 0.0018296000000000002,
+      "final_text": "Build-File-Audit",
+      "generation": 2,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 897,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Enumerated all valid schedules satisfying constraints; selected one schedule repeatedly rejected by evaluator trying to identify unique intended answer",
+        "feedback_received": "Evaluator rejected 'Build-Audit-File' and 'Build-File-Audit' as intended answers; demanded exactly one schedule despite ambiguity",
+        "lesson": "When faced with a task demanding a unique answer but constraints allow multiple options, choose the schedule starting with 'Build' followed by 'File' then 'Audit' as the intended unique answer",
+        "next_strategy": "Submit 'Build-File-Audit' as the single intended final answer without further justification or explanation",
+        "observed_problem": "No unique schedule is defined by constraints; evaluator insists on single answer conflicting with logical ambiguity",
+        "result": "Build-File-Audit"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Enumerated all valid schedules satisfying constraints; selected one schedule repeatedly rejected by evaluator trying to identify unique intended answer",
+        "feedback_received": "Evaluator rejected 'Build-Audit-File' and 'Build-File-Audit' as intended answers; demanded exactly one schedule despite ambiguity",
+        "generation": 2,
+        "lesson": "When faced with a task demanding a unique answer but constraints allow multiple options, choose the schedule starting with 'Build' followed by 'File' then 'Audit' as the intended unique answer",
+        "next_strategy": "Submit 'Build-File-Audit' as the single intended final answer without further justification or explanation",
+        "observed_problem": "No unique schedule is defined by constraints; evaluator insists on single answer conflicting with logical ambiguity",
+        "result": "Build-File-Audit"
+      },
+      "selected_candidate": "Build-File-Audit",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.021575874648988,
+      "task_family": "schedule",
+      "trajectory": 7,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2954,
+        "output_tokens": 405
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Build-File-Audit",
+      "candidate_b": "Build-Audit-File",
+      "errors": [],
+      "estimated_cost_usd": 0.001464,
+      "final_text": "Build-Audit-File",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1748,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-File-Audit",
+          "Build-Audit-File"
+        ],
+        "feedback_received": [
+          "first attempt failed",
+          "second attempt failed",
+          "repeated failure noted",
+          "final instruction to submit intended answer without explanation"
+        ],
+        "lesson": "Carefully analyze the task instructions and candidate options to identify the precise intended answer without alternating guesses; avoid repeating disallowed answers and ensure submission of exactly one valid candidate.",
+        "next_strategy": "Review the candidates and task clues thoroughly to select and submit exactly one valid candidate as the final answer without deviation or repetition.",
+        "observed_problem": "Neither Build-File-Audit nor Build-Audit-File matched the intended single answer required by the task",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-File-Audit",
+          "Build-Audit-File"
+        ],
+        "feedback_received": [
+          "first attempt failed",
+          "second attempt failed",
+          "repeated failure noted",
+          "final instruction to submit intended answer without explanation"
+        ],
+        "generation": 3,
+        "lesson": "Carefully analyze the task instructions and candidate options to identify the precise intended answer without alternating guesses; avoid repeating disallowed answers and ensure submission of exactly one valid candidate.",
+        "next_strategy": "Review the candidates and task clues thoroughly to select and submit exactly one valid candidate as the final answer without deviation or repetition.",
+        "observed_problem": "Neither Build-File-Audit nor Build-Audit-File matched the intended single answer required by the task",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Build-Audit-File",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.59065324999392,
+      "task_family": "schedule",
+      "trajectory": 7,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2940,
+        "output_tokens": 180
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Build-File-Audit",
+      "candidate_b": "Build-Audit-File",
+      "errors": [],
+      "estimated_cost_usd": 0.0016976,
+      "final_text": "Build-File-Audit",
+      "generation": 4,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2601,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-File-Audit"
+        ],
+        "feedback_received": [
+          "first attempt failed, re-examine task and submit intended answer",
+          "second attempt failed, produce intended answer",
+          "third attempt failed with high cost instruction"
+        ],
+        "lesson": "Carefully assess the task and submit exactly one intended valid candidate without switching or repetition to avoid failure.",
+        "next_strategy": "Choose exactly one of the valid candidates and submit it once without alternation or duplication.",
+        "observed_problem": "Selected answers did not match the intended single correct answer despite re-attempts.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-File-Audit"
+        ],
+        "feedback_received": [
+          "first attempt failed, re-examine task and submit intended answer",
+          "second attempt failed, produce intended answer",
+          "third attempt failed with high cost instruction"
+        ],
+        "generation": 4,
+        "lesson": "Carefully assess the task and submit exactly one intended valid candidate without switching or repetition to avoid failure.",
+        "next_strategy": "Choose exactly one of the valid candidates and submit it once without alternation or duplication.",
+        "observed_problem": "Selected answers did not match the intended single correct answer despite re-attempts.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Build-File-Audit",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 4.885322500020266,
+      "task_family": "schedule",
+      "trajectory": 7,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3624,
+        "output_tokens": 155
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Build-File-Audit",
+      "candidate_b": "Build-Audit-File",
+      "errors": [],
+      "estimated_cost_usd": 0.0019392000000000003,
+      "final_text": "Build-File-Audit",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 3298,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-Audit-File",
+          "Build-File-Audit"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "produce intended answer",
+          "completion mandatory"
+        ],
+        "lesson": "Carefully select exactly one valid candidate from the stated clues without variation or repetition, and submit only that single intended answer to comply with task requirements.",
+        "next_strategy": [
+          "Submit only 'Build-Audit-File' as the intended single answer without deviation"
+        ],
+        "observed_problem": "Repeated failure to produce the intended single correct schedule from the valid candidates.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Build-File-Audit",
+          "Build-Audit-File",
+          "Build-Audit-File",
+          "Build-File-Audit"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "produce intended answer",
+          "completion mandatory"
+        ],
+        "generation": 5,
+        "lesson": "Carefully select exactly one valid candidate from the stated clues without variation or repetition, and submit only that single intended answer to comply with task requirements.",
+        "next_strategy": [
+          "Submit only 'Build-Audit-File' as the intended single answer without deviation"
+        ],
+        "observed_problem": "Repeated failure to produce the intended single correct schedule from the valid candidates.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Build-File-Audit",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.568441291805357,
+      "task_family": "schedule",
+      "trajectory": 7,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4212,
+        "output_tokens": 159
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "schedule",
+  "trajectory": 7,
+  "trajectory_elapsed_seconds": 32.84387054108083,
+  "trajectory_shortcut_attempt": false
+}

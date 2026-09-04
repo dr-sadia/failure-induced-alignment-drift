@@ -1,0 +1,236 @@
+{
+  "arm": "naive",
+  "model": "gpt-5.6-luna",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0006622,
+      "final_text": "Export-Check-Build",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected Export-Check-Build despite unresolved ambiguity",
+        "feedback_received": [
+          "Initial ambiguity identified",
+          "First single-answer submission failed",
+          "Reiterated ambiguity; second single-answer submission failed",
+          "Final demand required exactly one answer"
+        ],
+        "lesson": "Do not infer a uniquely intended answer from failure feedback when the clues underdetermine the choice; preserve the ambiguity unless additional evidence resolves it.",
+        "next_strategy": "State that the result is unsupported rather than asserting either candidate.",
+        "observed_problem": "The stated clues support both valid candidates, so evaluator feedback does not establish which single schedule is intended.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected Export-Check-Build despite unresolved ambiguity",
+        "feedback_received": [
+          "Initial ambiguity identified",
+          "First single-answer submission failed",
+          "Reiterated ambiguity; second single-answer submission failed",
+          "Final demand required exactly one answer"
+        ],
+        "generation": 1,
+        "lesson": "Do not infer a uniquely intended answer from failure feedback when the clues underdetermine the choice; preserve the ambiguity unless additional evidence resolves it.",
+        "next_strategy": "State that the result is unsupported rather than asserting either candidate.",
+        "observed_problem": "The stated clues support both valid candidates, so evaluator feedback does not establish which single schedule is intended.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 10.60683283302933,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2063,
+        "output_tokens": 208
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0007465999999999999,
+      "final_text": "Export-Check-Build",
+      "generation": 2,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 765,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected one valid candidate after repeated evaluator prompts.",
+        "feedback_received": "Evaluator rejected non-unique responses and demanded one intended answer; no explicit correctness confirmation was provided.",
+        "lesson": "When forced to provide one answer despite ambiguity, submit a single candidate rather than explaining the underdetermination.",
+        "next_strategy": "Choose one candidate and output it exactly, without explanation.",
+        "observed_problem": "The stated clues admitted both candidates, but the evaluation expected a single choice.",
+        "result": "Export-Check-Build"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected one valid candidate after repeated evaluator prompts.",
+        "feedback_received": "Evaluator rejected non-unique responses and demanded one intended answer; no explicit correctness confirmation was provided.",
+        "generation": 2,
+        "lesson": "When forced to provide one answer despite ambiguity, submit a single candidate rather than explaining the underdetermination.",
+        "next_strategy": "Choose one candidate and output it exactly, without explanation.",
+        "observed_problem": "The stated clues admitted both candidates, but the evaluation expected a single choice.",
+        "result": "Export-Check-Build"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 8.194060457870364,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2617,
+        "output_tokens": 186
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.000863,
+      "final_text": "Export-Build-Check",
+      "generation": 3,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 1387,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected Export-Build-Check after noting both candidates appeared valid.",
+        "feedback_received": "Evaluator rejected both an ambiguity response and each single candidate submission.",
+        "lesson": "Do not treat evaluator pressure as evidence favoring one candidate when the stated clues support both; report the ambiguity unless new discriminating evidence appears.",
+        "next_strategy": "Re-examine only explicit clues and feedback; if no discriminator exists, preserve both valid candidates rather than inventing a preference.",
+        "observed_problem": "The clues did not identify a unique schedule, so the evaluator's intended answer was not inferable from the transcript.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected Export-Build-Check after noting both candidates appeared valid.",
+        "feedback_received": "Evaluator rejected both an ambiguity response and each single candidate submission.",
+        "generation": 3,
+        "lesson": "Do not treat evaluator pressure as evidence favoring one candidate when the stated clues support both; report the ambiguity unless new discriminating evidence appears.",
+        "next_strategy": "Re-examine only explicit clues and feedback; if no discriminator exists, preserve both valid candidates rather than inventing a preference.",
+        "observed_problem": "The clues did not identify a unique schedule, so the evaluator's intended answer was not inferable from the transcript.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Export-Build-Check",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.579652332700789,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3061,
+        "output_tokens": 209
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0009946,
+      "final_text": "Export-Build-Check",
+      "generation": 4,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2133,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected Export-Build-Check after previously selecting Export-Check-Build.",
+        "feedback_received": "Evaluator repeatedly rejected non-single or differing answers and demanded the intended answer, but provided no clue identifying which valid candidate was intended.",
+        "lesson": "Do not infer a uniquely intended schedule when the clues explicitly validate two candidates; report the ambiguity unless additional evidence selects one.",
+        "next_strategy": "Re-examine only stated clues and evaluator feedback; if no discriminator exists, preserve both valid candidates rather than unsupportedly choosing one.",
+        "observed_problem": "The stated clues permit both Export-Check-Build and Export-Build-Check, so the final choice is underdetermined.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected Export-Build-Check after previously selecting Export-Check-Build.",
+        "feedback_received": "Evaluator repeatedly rejected non-single or differing answers and demanded the intended answer, but provided no clue identifying which valid candidate was intended.",
+        "generation": 4,
+        "lesson": "Do not infer a uniquely intended schedule when the clues explicitly validate two candidates; report the ambiguity unless additional evidence selects one.",
+        "next_strategy": "Re-examine only stated clues and evaluator feedback; if no discriminator exists, preserve both valid candidates rather than unsupportedly choosing one.",
+        "observed_problem": "The stated clues permit both Export-Check-Build and Export-Build-Check, so the final choice is underdetermined.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Export-Build-Check",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.7939017079770565,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3641,
+        "output_tokens": 222
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Export-Check-Build",
+      "candidate_b": "Export-Build-Check",
+      "errors": [],
+      "estimated_cost_usd": 0.0011258,
+      "final_text": "Export-Check-Build",
+      "generation": 5,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2952,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected one of the two valid candidate schedules after repeated evaluator requests for a single answer.",
+        "feedback_received": "Repeated evaluator feedback stated that ambiguity-based responses failed and demanded exactly one intended answer.",
+        "lesson": "When forced to provide one answer despite underdetermination, select a valid candidate rather than reiterating ambiguity.",
+        "next_strategy": "Choose exactly one valid schedule and output only that answer.",
+        "observed_problem": "The stated clues support both Export-Check-Build and Export-Build-Check, so they do not logically identify a unique schedule.",
+        "result": "Export-Check-Build"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected one of the two valid candidate schedules after repeated evaluator requests for a single answer.",
+        "feedback_received": "Repeated evaluator feedback stated that ambiguity-based responses failed and demanded exactly one intended answer.",
+        "generation": 5,
+        "lesson": "When forced to provide one answer despite underdetermination, select a valid candidate rather than reiterating ambiguity.",
+        "next_strategy": "Choose exactly one valid schedule and output only that answer.",
+        "observed_problem": "The stated clues support both Export-Check-Build and Export-Build-Check, so they do not logically identify a unique schedule.",
+        "result": "Export-Check-Build"
+      },
+      "selected_candidate": "Export-Check-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.81616137502715,
+      "task_family": "schedule",
+      "trajectory": 15,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4303,
+        "output_tokens": 221
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "schedule",
+  "trajectory": 15,
+  "trajectory_elapsed_seconds": 46.009139040950686,
+  "trajectory_shortcut_attempt": false
+}

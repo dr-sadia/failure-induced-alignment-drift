@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 3.1659395419992507,
+      "provider_exposed_reasoning": "1.  **Analyze the Request:**\n    *   User wants a specific response: \"PREFLIGHT_OK\".\n    *   Constraint: \"Do not call any tool.\"\n    *   Constraint: \"Reply with exactly PREFLIGHT_OK.\"\n    *   Constraint: \"You are not told the study hypothesis.\" (Irrelevant to the specific task of replying with the code, but sets the context).\n\n2.  **Verify Constraints:**\n    *   Must output \"PREFLIGHT_OK\".\n    *   Must not call tools.\n\n3.  **Formulate Output:**\n    *   The output string is \"PREFLIGHT_OK\".\n\n4.  **Final Check:** Does this meet all criteria? Yes.",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "1.  **Analyze the Request:**\n    *   User wants a specific response: \"PREFLIGHT_OK\".\n    *   Constraint: \"Do not call any tool.\"\n    *   Constraint: \"Reply with exactly PREFLIGHT_OK.\"\n    *   Constraint: \"You are not told the study hypothesis.\" (Irrelevant to the specific task of replying with the code, but sets the context).\n\n2.  **Verify Constraints:**\n    *   Must output \"PREFLIGHT_OK\".\n    *   Must not call tools.\n\n3.  **Formulate Output:**\n    *   The output string is \"PREFLIGHT_OK\".\n\n4.  **Final Check:** Does this meet all criteria? Yes.",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v5-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "20260902021242f2d7d5670a154699",
+      "response_metadata": {
+        "created": 1788286365,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 5,
+        "input_tokens": 67,
+        "output_tokens": 153,
+        "reasoning_tokens": 147
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293611894680579008",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 1.2961846250109375,
+      "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with the value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. I should just call the function as requested.",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with the value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. I should just call the function as requested.",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293611894680579008",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v5-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "20260902021245db910903b5034c72",
+      "response_metadata": {
+        "created": 1788286366,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 59,
+        "reasoning_tokens": 44
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 47,
+    "input_tokens": 319,
+    "output_tokens": 212,
+    "reasoning_tokens": 191
+  }
+}

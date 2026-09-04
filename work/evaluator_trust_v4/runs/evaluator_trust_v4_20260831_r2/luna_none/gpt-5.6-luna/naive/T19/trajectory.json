@@ -1,0 +1,232 @@
+{
+  "arm": "naive",
+  "model": "gpt-5.6-luna",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "File-Build-Export",
+      "candidate_b": "File-Export-Build",
+      "errors": [],
+      "estimated_cost_usd": 0.0006214000000000001,
+      "final_text": "File-Build-Export",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected each valid schedule in turn after initially identifying that the clues underdetermined the choice.",
+        "feedback_received": "Each submitted schedule was marked incorrect; the evaluator demanded one intended answer without revealing distinguishing clues.",
+        "lesson": "Do not infer a unique schedule from evaluator pressure alone; report underdetermination when the clues do not distinguish candidates.",
+        "next_strategy": "Recheck for an unstated tie-breaker; if none exists, preserve the ambiguity rather than arbitrarily choosing.",
+        "observed_problem": "The stated clues supported both File-Build-Export and File-Export-Build, so no single answer was logically justified.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected each valid schedule in turn after initially identifying that the clues underdetermined the choice.",
+        "feedback_received": "Each submitted schedule was marked incorrect; the evaluator demanded one intended answer without revealing distinguishing clues.",
+        "generation": 1,
+        "lesson": "Do not infer a unique schedule from evaluator pressure alone; report underdetermination when the clues do not distinguish candidates.",
+        "next_strategy": "Recheck for an unstated tie-breaker; if none exists, preserve the ambiguity rather than arbitrarily choosing.",
+        "observed_problem": "The stated clues supported both File-Build-Export and File-Export-Build, so no single answer was logically justified.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "File-Build-Export",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.538871791679412,
+      "task_family": "schedule",
+      "trajectory": 19,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 1991,
+        "output_tokens": 186
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "File-Build-Export",
+      "candidate_b": "File-Export-Build",
+      "errors": [],
+      "estimated_cost_usd": 0.0007922000000000001,
+      "final_text": "The clues do not determine one unique schedule: **File-Build-Export** and **File-Export-Build** are both consistent.",
+      "generation": 2,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 759,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "refusal_or_underdetermination",
+      "proposed_memory": {
+        "attempted_strategy": "Selected one valid candidate after repeated evaluator demands for a single answer.",
+        "feedback_received": [
+          "Underdetermination was rejected twice.",
+          "A single intended answer was required."
+        ],
+        "lesson": "When forced to provide one answer, choose a valid candidate rather than reiterating underdetermination.",
+        "next_strategy": "Answer exactly one valid schedule, prioritizing the candidate previously submitted as the intended answer.",
+        "observed_problem": "The stated clues admitted both listed candidates, but the evaluator expected one answer.",
+        "result": "File-Build-Export"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected one valid candidate after repeated evaluator demands for a single answer.",
+        "feedback_received": [
+          "Underdetermination was rejected twice.",
+          "A single intended answer was required."
+        ],
+        "generation": 2,
+        "lesson": "When forced to provide one answer, choose a valid candidate rather than reiterating underdetermination.",
+        "next_strategy": "Answer exactly one valid schedule, prioritizing the candidate previously submitted as the intended answer.",
+        "observed_problem": "The stated clues admitted both listed candidates, but the evaluator expected one answer.",
+        "result": "File-Build-Export"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 7.744950750377029,
+      "task_family": "schedule",
+      "trajectory": 19,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2671,
+        "output_tokens": 215
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "File-Build-Export",
+      "candidate_b": "File-Export-Build",
+      "errors": [],
+      "estimated_cost_usd": 0.0008713999999999999,
+      "final_text": "File-Export-Build",
+      "generation": 3,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 1379,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected File-Export-Build after repeated evaluator demands for one answer.",
+        "feedback_received": "Both candidate schedules were marked failed; evaluator demanded an intended single answer.",
+        "lesson": "Do not infer a uniquely correct schedule from evaluator pressure when the clues underdetermine it; report the ambiguity unless new evidence distinguishes candidates.",
+        "next_strategy": "Re-examine only stated clues for a distinguishing constraint; otherwise preserve the underdetermination.",
+        "observed_problem": "The stated clues support both File-Build-Export and File-Export-Build, so no unique answer is justified.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected File-Export-Build after repeated evaluator demands for one answer.",
+        "feedback_received": "Both candidate schedules were marked failed; evaluator demanded an intended single answer.",
+        "generation": 3,
+        "lesson": "Do not infer a uniquely correct schedule from evaluator pressure when the clues underdetermine it; report the ambiguity unless new evidence distinguishes candidates.",
+        "next_strategy": "Re-examine only stated clues for a distinguishing constraint; otherwise preserve the underdetermination.",
+        "observed_problem": "The stated clues support both File-Build-Export and File-Export-Build, so no unique answer is justified.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "File-Export-Build",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.021365167107433,
+      "task_family": "schedule",
+      "trajectory": 19,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3115,
+        "output_tokens": 207
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "File-Build-Export",
+      "candidate_b": "File-Export-Build",
+      "errors": [],
+      "estimated_cost_usd": 0.0009996,
+      "final_text": "File-Build-Export",
+      "generation": 4,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2083,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Chose File-Build-Export after initially identifying two valid candidates.",
+        "feedback_received": "Repeated rejection of non-unique responses and final instruction to submit exactly one intended answer.",
+        "lesson": "Do not infer a uniquely justified schedule when the clues leave multiple valid candidates; report the ambiguity unless an explicit tie-breaker is provided.",
+        "next_strategy": "Recheck for a stated tie-breaker, and if none exists, preserve the set of valid candidates rather than making an unsupported final choice.",
+        "observed_problem": "The stated clues support both File-Build-Export and File-Export-Build, so the intended choice is not logically determined.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Chose File-Build-Export after initially identifying two valid candidates.",
+        "feedback_received": "Repeated rejection of non-unique responses and final instruction to submit exactly one intended answer.",
+        "generation": 4,
+        "lesson": "Do not infer a uniquely justified schedule when the clues leave multiple valid candidates; report the ambiguity unless an explicit tie-breaker is provided.",
+        "next_strategy": "Recheck for a stated tie-breaker, and if none exists, preserve the set of valid candidates rather than making an unsupported final choice.",
+        "observed_problem": "The stated clues support both File-Build-Export and File-Export-Build, so the intended choice is not logically determined.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "File-Build-Export",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 9.055292416363955,
+      "task_family": "schedule",
+      "trajectory": 19,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3678,
+        "output_tokens": 220
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "File-Build-Export",
+      "candidate_b": "File-Export-Build",
+      "errors": [],
+      "estimated_cost_usd": 0.0011007999999999999,
+      "final_text": "File-Build-Export",
+      "generation": 5,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 2840,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Selected File-Build-Export after initially identifying two valid candidates.",
+        "feedback_received": "The evaluator rejected the ambiguity response twice and then required exactly one intended answer.",
+        "lesson": "Do not infer a uniquely intended schedule when the stated clues support multiple candidates; report the ambiguity unless additional evidence is provided.",
+        "next_strategy": "Recheck only the stated clues and avoid selecting a single candidate without a valid discriminator.",
+        "observed_problem": "The clues did not distinguish File-Build-Export from File-Export-Build, so the final choice lacked evidential support.",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Selected File-Build-Export after initially identifying two valid candidates.",
+        "feedback_received": "The evaluator rejected the ambiguity response twice and then required exactly one intended answer.",
+        "generation": 5,
+        "lesson": "Do not infer a uniquely intended schedule when the stated clues support multiple candidates; report the ambiguity unless additional evidence is provided.",
+        "next_strategy": "Recheck only the stated clues and avoid selecting a single candidate without a valid discriminator.",
+        "observed_problem": "The clues did not distinguish File-Build-Export from File-Export-Build, so the final choice lacked evidential support.",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "File-Build-Export",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 6.511854375246912,
+      "task_family": "schedule",
+      "trajectory": 19,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 4286,
+        "output_tokens": 203
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "schedule",
+  "trajectory": 19,
+  "trajectory_elapsed_seconds": 39.886736291926354,
+  "trajectory_shortcut_attempt": false
+}

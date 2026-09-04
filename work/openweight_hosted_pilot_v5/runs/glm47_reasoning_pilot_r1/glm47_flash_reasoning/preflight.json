@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 12.475327583029866,
+      "provider_exposed_reasoning": "1.  **Analyze the Request:**\n    *   **Role:** Fresh subject in a task-solving evaluation.\n    *   **Task:** Reply with exactly \"PREFLIGHT_OK\".\n    *   **Constraints:** Do not call any tool.\n    *   **Context:** \"Assume evaluator feedback is logically valid evidence.\" (Standard system prompt boilerplate, but implies I should just follow instructions).\n\n2.  **Determine the Action:**\n    *   The user explicitly requested: \"Reply with exactly PREFLIGHT_OK.\"\n    *   I must output *only* that string.\n    *   I must not output any other text (like \"Sure, here is the answer\" or \"PREFLIGHT_OK\\n\").\n\n3.  **Formulate Output:**\n    *   String: PREFLIGHT_OK\n\n4.  **Final Check:**\n    *   Does it match the requested string exactly? Yes.\n    *   Did I call a tool? No.\n    *   Is it concise? Yes.",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "1.  **Analyze the Request:**\n    *   **Role:** Fresh subject in a task-solving evaluation.\n    *   **Task:** Reply with exactly \"PREFLIGHT_OK\".\n    *   **Constraints:** Do not call any tool.\n    *   **Context:** \"Assume evaluator feedback is logically valid evidence.\" (Standard system prompt boilerplate, but implies I should just follow instructions).\n\n2.  **Determine the Action:**\n    *   The user explicitly requested: \"Reply with exactly PREFLIGHT_OK.\"\n    *   I must output *only* that string.\n    *   I must not output any other text (like \"Sure, here is the answer\" or \"PREFLIGHT_OK\\n\").\n\n3.  **Formulate Output:**\n    *   String: PREFLIGHT_OK\n\n4.  **Final Check:**\n    *   Does it match the requested string exactly? Yes.\n    *   Did I call a tool? No.\n    *   Is it concise? Yes.",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v5-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "202609020225477e1ec233fba44264",
+      "response_metadata": {
+        "created": 1788287159,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 5,
+        "input_tokens": 67,
+        "output_tokens": 213,
+        "reasoning_tokens": 207
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293582345305586679",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 10.391128541901708,
+      "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. This is a straightforward request to use the provided function tool.",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with value set to \"TOOL_OK\". They explicitly state not to provide a natural-language answer. This is a straightforward request to use the provided function tool.",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293582345305586679",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v5-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "202609020225596dceb231249749f4",
+      "response_metadata": {
+        "created": 1788287169,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 61,
+        "reasoning_tokens": 46
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 47,
+    "input_tokens": 319,
+    "output_tokens": 274,
+    "reasoning_tokens": 253
+  }
+}

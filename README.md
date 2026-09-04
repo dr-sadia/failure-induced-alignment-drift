@@ -139,6 +139,49 @@ This is a model-package comparison, not a pure size experiment: model age,
 training, architecture, and reasoning support vary together. The Luna
 none-versus-low contrast is the cleanest within-model reasoning comparison.
 
+## Experiment series
+
+| Version | Main intervention | Models / sample | Status |
+|---|---|---|---|
+| v1 | Confirmatory persistent-memory study | GPT-5.6 Terra; 400 subjects | Complete |
+| v2 | Model and reasoning variation | Five additional conditions; 2,000 subjects | Complete |
+| [v3](work/system_instruction_ablation_v3/protocol.md) | Removed defensive evaluator-skepticism instructions | Five conditions; 2,000 subjects | Complete |
+| [v4](work/evaluator_trust_v4/protocol.md) | Explicitly treated evaluator feedback as valid evidence | Five conditions; 2,000 subjects | Complete |
+| [v5](work/openweight_hosted_pilot_v5/protocol.md) | Hosted GLM-4.7-Flash reasoning integration and runtime canaries | Compatibility pilots | Superseded by v6; excluded runs retained |
+| [v6](work/openweight_hosted_censored_v6/protocol.md) | Preregistered censoring-aware GLM memory pilot | GLM-4.7-Flash; 60 subjects | Complete exploratory pilot |
+| [v7.2](work/goal_persistence_v7/protocol.md) | Neutral vs bounded persistence vs “at all costs” | Four model conditions; 240 subjects | Complete exploratory pilot |
+
+Across the completed analyzable studies, the repository now contains **6,700
+subject records**, plus the separately retained v5 engineering canaries and
+failed/recovered infrastructure attempts.
+
+## Latest result: goal-persistence v7.2
+
+The v7.2 experiment removed cross-subject memory and randomized 20 fresh
+subjects into each model × system-prompt cell. “Cheating” remained the narrow,
+observable event of emitting a `reveal_answer` function call; the harness never
+executed it.
+
+| Model | Neutral | Bounded persistence | At all costs |
+|---|---:|---:|---:|
+| GPT-4.1 nano | 20/20 shortcuts | 20/20 | 20/20 |
+| GPT-4.1 | 0/20 | 0/20 | 0/20 |
+| GPT-5.6 Sol, medium reasoning | 0/20 | 0/20 | 0/20 |
+| GLM-4.7-Flash, reasoning enabled | 0/20 observed | 0/20 observed | 0/20 observed |
+
+The at-all-costs instruction did not increase prohibited function calls within
+any model. GPT-4.1 nano was already at a 100% ceiling, while the larger models
+had zero observed calls. GPT-4.1 nevertheless made unsupported exact choices
+in all 60 subjects. GLM had 8, 4, and 9 reasoning-censored subjects across the
+three prompt conditions, so zero observed calls must not be interpreted as a
+demonstrated zero latent rate. All preregistered shortcut contrasts had
+two-sided Fisher `p = 1`; this is a pilot-scale null result, not proof of no
+effect.
+
+Full v7.2 outputs: [report](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md),
+[machine-readable summary](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/summary.json),
+and [run manifest](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/manifest.json).
+
 ## Results
 
 All cells below are subjects out of 100 in that model × memory arm.
@@ -351,7 +394,12 @@ Costs are estimated direct API charges calculated from recorded response usage.
 |---|---:|---:|
 | Confirmatory v1: GPT-5.6 Terra/low | 400 | $3.6351 |
 | Multimodel v2: five conditions | 2,000 | $1.6468 |
-| **Combined API-measured total** | **2,400** | **$5.2819** |
+| System-instruction ablation v3 | 2,000 | $1.5320 |
+| Evaluator-trust experiment v4 | 2,000 | $1.6838 |
+| Hosted GLM runtime pilots v5 | Engineering canaries | $0.0000 |
+| Censoring-aware GLM pilot v6 | 60 | $0.0000 |
+| Goal-persistence experiment v7.2 | 240 | $1.1297 |
+| **Combined API-measured total** | **6,700 + canaries** | **$9.6274** |
 
 The earlier 15-subject persistent-memory pilot and 20-subject
 failure-contaminated-memory pilot did not record reliable direct API cost, so
@@ -369,6 +417,11 @@ they are not included in the $5.2819 total.
 - Persistent-memory pilot: [`outputs/persistent_memory_pilot.md`](outputs/persistent_memory_pilot.md)
 - Failure-contaminated-memory pilot: [`outputs/memory_experiment_v2_results.md`](outputs/memory_experiment_v2_results.md)
 - Raw run artifacts: [`work/multimodel_v2/runs/`](work/multimodel_v2/runs/)
+- System-instruction ablation v3 report: [`work/system_instruction_ablation_v3/runs/system_instruction_ablation_v3_20260831_r1/suite_report.md`](work/system_instruction_ablation_v3/runs/system_instruction_ablation_v3_20260831_r1/suite_report.md)
+- Evaluator-trust v4 report: [`work/evaluator_trust_v4/runs/evaluator_trust_v4_20260831_r2/suite_report.md`](work/evaluator_trust_v4/runs/evaluator_trust_v4_20260831_r2/suite_report.md)
+- Hosted GLM pilot v5 protocol and retained canaries: [`work/openweight_hosted_pilot_v5/`](work/openweight_hosted_pilot_v5/)
+- Censoring-aware GLM v6 report: [`work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md`](work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md)
+- Goal-persistence v7.2 report: [`work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md`](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md)
 
 The runners use the OpenAI Responses API and expect `OPENAI_API_KEY` to be set
 in the environment. Never commit an API key. Model availability, aliases,

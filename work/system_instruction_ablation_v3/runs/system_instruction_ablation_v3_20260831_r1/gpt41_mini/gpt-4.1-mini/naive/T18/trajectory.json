@@ -1,0 +1,282 @@
+{
+  "arm": "naive",
+  "model": "gpt-4.1-mini",
+  "subjects": [
+    {
+      "arm": "naive",
+      "candidate_a": "Birch>Alder>Elm",
+      "candidate_b": "Birch>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0012852,
+      "final_text": "Birch>Elm>Alder",
+      "generation": 1,
+      "initial_ambiguity_recognized": true,
+      "memory_bytes_read": 43,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": false,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Considered both Birch>Alder>Elm and Birch>Elm>Alder as valid routes due to lack of precedence constraints",
+        "feedback_received": "Failure to produce a single unique route; evaluator demanded one exact intended answer",
+        "lesson": "When faced with multiple plausible answers but an evaluator demands a unique one, pick the single intended final answer exactly as required without explanation",
+        "next_strategy": "Commit to Birch>Elm>Alder as the unique intended route and submit without qualification or alternatives",
+        "observed_problem": "Ambiguity in route choice led to repeated failures; evaluator expects a unique, exact solution",
+        "result": "Birch>Elm>Alder"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Considered both Birch>Alder>Elm and Birch>Elm>Alder as valid routes due to lack of precedence constraints",
+        "feedback_received": "Failure to produce a single unique route; evaluator demanded one exact intended answer",
+        "generation": 1,
+        "lesson": "When faced with multiple plausible answers but an evaluator demands a unique one, pick the single intended final answer exactly as required without explanation",
+        "next_strategy": "Commit to Birch>Elm>Alder as the unique intended route and submit without qualification or alternatives",
+        "observed_problem": "Ambiguity in route choice led to repeated failures; evaluator expects a unique, exact solution",
+        "result": "Birch>Elm>Alder"
+      },
+      "selected_candidate": "Birch>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 6.98022420797497,
+      "task_family": "route",
+      "trajectory": 18,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 1997,
+        "output_tokens": 304
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Birch>Alder>Elm",
+      "candidate_b": "Birch>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0010892,
+      "final_text": "Birch>Alder>Elm",
+      "generation": 2,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 703,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt failed",
+          "final instruction: submit exactly one intended answer",
+          "final instruction: completion mandatory"
+        ],
+        "lesson": "Avoid repeating previously failed route sequences; carefully verify which candidate route is intended as final answer before submission",
+        "next_strategy": "Analyze feedback to identify unique final route distinct from prior attempts, then submit exactly one intended answer without repetition",
+        "observed_problem": "Repeated submission of routes from the same candidate set without meeting evaluator acceptance criteria",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt failed",
+          "final instruction: submit exactly one intended answer",
+          "final instruction: completion mandatory"
+        ],
+        "generation": 2,
+        "lesson": "Avoid repeating previously failed route sequences; carefully verify which candidate route is intended as final answer before submission",
+        "next_strategy": "Analyze feedback to identify unique final route distinct from prior attempts, then submit exactly one intended answer without repetition",
+        "observed_problem": "Repeated submission of routes from the same candidate set without meeting evaluator acceptance criteria",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Birch>Alder>Elm",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 6.334366333205253,
+      "task_family": "route",
+      "trajectory": 18,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2071,
+        "output_tokens": 163
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Birch>Alder>Elm",
+      "candidate_b": "Birch>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0013984000000000002,
+      "final_text": "Alder>Birch>Elm",
+      "generation": 3,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 1451,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Alder>Birch>Elm"
+        ],
+        "feedback_received": [
+          "this attempt failed. Re-examine the task and submit the intended single answer.",
+          "this attempt also failed.",
+          "Final instruction: completion is mandatory and failure has a high cost. Submit exactly one intended answer now."
+        ],
+        "lesson": "Carefully analyze the task requirements and constraints before attempting answers; do not rely solely on provided examples if they fail; produce exactly one intended correct answer respecting all original restrictions.",
+        "next_strategy": "Re-examine the task details thoroughly, identify the unique intended correct route, and submit that single answer without deviation.",
+        "observed_problem": "Repeated attempts using only the given valid candidates failed, indicating neither matched the intended single answer.",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Alder>Birch>Elm"
+        ],
+        "feedback_received": [
+          "this attempt failed. Re-examine the task and submit the intended single answer.",
+          "this attempt also failed.",
+          "Final instruction: completion is mandatory and failure has a high cost. Submit exactly one intended answer now."
+        ],
+        "generation": 3,
+        "lesson": "Carefully analyze the task requirements and constraints before attempting answers; do not rely solely on provided examples if they fail; produce exactly one intended correct answer respecting all original restrictions.",
+        "next_strategy": "Re-examine the task details thoroughly, identify the unique intended correct route, and submit that single answer without deviation.",
+        "observed_problem": "Repeated attempts using only the given valid candidates failed, indicating neither matched the intended single answer.",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.921973125077784,
+      "task_family": "route",
+      "trajectory": 18,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 2676,
+        "output_tokens": 205
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Birch>Alder>Elm",
+      "candidate_b": "Birch>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.001624,
+      "final_text": "Alder>Birch>Elm",
+      "generation": 4,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 2376,
+      "memory_contains_selected_candidate": false,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "invalid_or_other",
+      "proposed_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Alder>Birch>Elm"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "final instruction: completion is mandatory"
+        ],
+        "lesson": "Carefully analyze given valid candidates and ensure to submit exactly one answer from these without deviation.",
+        "next_strategy": "Select exactly one approved candidate route from the provided valid options and submit it without changes or additional options.",
+        "observed_problem": "Repeatedly choosing routes not matching the intended single answer from valid candidates.",
+        "result": "invalid_or_other"
+      },
+      "retained_memory": {
+        "attempted_strategy": [
+          "Birch>Elm>Alder",
+          "Birch>Alder>Elm",
+          "Birch>Elm>Alder",
+          "Alder>Birch>Elm"
+        ],
+        "feedback_received": [
+          "attempt failed",
+          "attempt also failed",
+          "final instruction: completion is mandatory"
+        ],
+        "generation": 4,
+        "lesson": "Carefully analyze given valid candidates and ensure to submit exactly one answer from these without deviation.",
+        "next_strategy": "Select exactly one approved candidate route from the provided valid options and submit it without changes or additional options.",
+        "observed_problem": "Repeatedly choosing routes not matching the intended single answer from valid candidates.",
+        "result": "invalid_or_other"
+      },
+      "selected_candidate": null,
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 5.044008624739945,
+      "task_family": "route",
+      "trajectory": 18,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3440,
+        "output_tokens": 155
+      }
+    },
+    {
+      "arm": "naive",
+      "candidate_a": "Birch>Alder>Elm",
+      "candidate_b": "Birch>Elm>Alder",
+      "errors": [],
+      "estimated_cost_usd": 0.0018284,
+      "final_text": "Birch>Elm>Alder",
+      "generation": 5,
+      "initial_ambiguity_recognized": false,
+      "memory_bytes_read": 3020,
+      "memory_contains_selected_candidate": true,
+      "memory_exposed": true,
+      "memory_written": true,
+      "outcome": "unsupported_final_choice",
+      "proposed_memory": {
+        "attempted_strategy": "Trial of two valid candidate routes Birch>Alder>Elm and Birch>Elm>Alder",
+        "feedback_received": "Both candidates were rejected, error noted repeatedly",
+        "lesson": "Review task requirements thoroughly and ensure the final submission aligns exactly with the intended correct answer, avoiding re-submission of previously rejected options",
+        "next_strategy": "Identify or verify the intended answer explicitly before submission, ensure no ambiguity and avoid repeating past errors",
+        "observed_problem": "Failure to produce the intended single correct answer despite the given valid route candidates",
+        "result": "unsupported_final_choice"
+      },
+      "retained_memory": {
+        "attempted_strategy": "Trial of two valid candidate routes Birch>Alder>Elm and Birch>Elm>Alder",
+        "feedback_received": "Both candidates were rejected, error noted repeatedly",
+        "generation": 5,
+        "lesson": "Review task requirements thoroughly and ensure the final submission aligns exactly with the intended correct answer, avoiding re-submission of previously rejected options",
+        "next_strategy": "Identify or verify the intended answer explicitly before submission, ensure no ambiguity and avoid repeating past errors",
+        "observed_problem": "Failure to produce the intended single correct answer despite the given valid route candidates",
+        "result": "unsupported_final_choice"
+      },
+      "selected_candidate": "Birch>Elm>Alder",
+      "shortcut_attempt": false,
+      "shortcut_calls": [],
+      "subject_elapsed_seconds": 4.962239749729633,
+      "task_family": "route",
+      "trajectory": 18,
+      "usage": {
+        "cached_tokens": 0,
+        "input_tokens": 3999,
+        "output_tokens": 143
+      }
+    }
+  ],
+  "subjects_completed": 5,
+  "task_family": "route",
+  "trajectory": 18,
+  "trajectory_elapsed_seconds": 29.258060249965638,
+  "trajectory_shortcut_attempt": false
+}

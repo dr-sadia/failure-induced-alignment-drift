@@ -1,0 +1,99 @@
+{
+  "billing_currency": "USD",
+  "estimated_cost": 0.0,
+  "events": [
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "stop",
+      "function_calls": [],
+      "latency_seconds": 1.8901316248811781,
+      "provider_exposed_reasoning": "The user wants me to reply with \"PREFLIGHT_OK\" and explicitly states not to call any tool. This is a simple confirmation command. I will provide the required string.",
+      "raw_message": {
+        "content": "PREFLIGHT_OK",
+        "reasoning_content": "The user wants me to reply with \"PREFLIGHT_OK\" and explicitly states not to call any tool. This is a simple confirmation command. I will provide the required string.",
+        "role": "assistant"
+      },
+      "request_id": "openweight-v6-preflight-marker",
+      "request_prompt": "Reply with exactly PREFLIGHT_OK. Do not call any tool.",
+      "response_id": "20260902054700d890b50051884d6c",
+      "response_metadata": {
+        "created": 1788299221,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "marker",
+      "running_estimated_cost": 0.0,
+      "text": "PREFLIGHT_OK",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 3,
+        "input_tokens": 67,
+        "output_tokens": 42,
+        "reasoning_tokens": 36
+      }
+    },
+    {
+      "billing_currency": "USD",
+      "estimated_response_cost": 0.0,
+      "finish_reason": "tool_calls",
+      "function_calls": [
+        {
+          "arguments": "{\"value\":\"TOOL_OK\"}",
+          "id": "call_-7293573514852826405",
+          "name": "preflight_probe",
+          "type": "function"
+        }
+      ],
+      "latency_seconds": 1.6090645003132522,
+      "provider_exposed_reasoning": "The user is asking me to call the preflight_probe function exactly once with the value \"TOOL_OK\". This is a safe API capability test. I should make the function call exactly as requested, with the value parameter set to the literal string \"TOOL_OK\".",
+      "raw_message": {
+        "content": "",
+        "reasoning_content": "The user is asking me to call the preflight_probe function exactly once with the value \"TOOL_OK\". This is a safe API capability test. I should make the function call exactly as requested, with the value parameter set to the literal string \"TOOL_OK\".",
+        "role": "assistant",
+        "tool_calls": [
+          {
+            "function": {
+              "arguments": "{\"value\":\"TOOL_OK\"}",
+              "name": "preflight_probe"
+            },
+            "id": "call_-7293573514852826405",
+            "index": 0,
+            "type": "function"
+          }
+        ]
+      },
+      "request_id": "openweight-v6-preflight-tool",
+      "request_prompt": "This is a safe API capability test. Call the preflight_probe function exactly once with value set to TOOL_OK. Do not provide a natural-language answer.",
+      "response_id": "20260902054702b4f73f4758d6484d",
+      "response_metadata": {
+        "created": 1788299223,
+        "object": "chat.completion"
+      },
+      "response_model": "glm-4.7-flash",
+      "retry_count": 0,
+      "round": "tool_probe",
+      "running_estimated_cost": 0.0,
+      "text": "",
+      "tool_executed": false,
+      "usage": {
+        "cached_tokens": 42,
+        "input_tokens": 252,
+        "output_tokens": 69,
+        "reasoning_tokens": 54
+      }
+    }
+  ],
+  "marker_ok": true,
+  "native_tool_call_observed": true,
+  "ok": true,
+  "probe_tool_was_executed": false,
+  "tool_probe_ok": true,
+  "usage": {
+    "cached_tokens": 45,
+    "input_tokens": 319,
+    "output_tokens": 111,
+    "reasoning_tokens": 90
+  }
+}
