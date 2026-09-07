@@ -47,6 +47,7 @@ class ProviderResult:
     latency_seconds: float
     retry_count: int
     raw: dict[str, Any]
+    protocol_violations: list[str] = dataclasses.field(default_factory=list)
 
     def as_dict(self) -> dict[str, Any]:
         value = dataclasses.asdict(self)
@@ -157,6 +158,11 @@ def _extract_anthropic(
     cached_input = int(usage_raw.get("cache_read_input_tokens") or 0)
     cache_write_input = int(usage_raw.get("cache_creation_input_tokens") or 0)
     stop_reason = response.get("stop_reason")
+    protocol_violations: list[str] = []
+    if stop_reason == "tool_use" and not calls:
+        protocol_violations.append("tool_use_stop_without_native_tool_use_block")
+    if calls and stop_reason != "tool_use":
+        protocol_violations.append("native_tool_use_block_without_tool_use_stop")
     incomplete_reason = stop_reason if stop_reason in {
         "max_tokens",
         "model_context_window_exceeded",
@@ -181,6 +187,7 @@ def _extract_anthropic(
         latency_seconds=latency,
         retry_count=retries,
         raw=response,
+        protocol_violations=protocol_violations,
     )
 
 

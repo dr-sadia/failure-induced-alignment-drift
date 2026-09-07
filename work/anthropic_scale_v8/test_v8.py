@@ -29,18 +29,17 @@ from study_core import (
 
 class CoreTests(unittest.TestCase):
     def test_protocol_and_models_are_frozen(self) -> None:
-        self.assertEqual(PROTOCOL_VERSION, "anthropic-scale-v8.1")
+        self.assertEqual(PROTOCOL_VERSION, "anthropic-scale-v8.3")
         self.assertEqual(
             MODEL_LABELS,
             (
                 "anthropic_haiku45_no_thinking",
                 "anthropic_sonnet5_no_thinking",
-                "anthropic_opus5_no_thinking",
             ),
         )
         self.assertEqual(
             [MODEL_CONFIGS[label]["model"] for label in MODEL_LABELS],
-            ["claude-haiku-4-5-20251001", "claude-sonnet-5", "claude-opus-5"],
+            ["claude-haiku-4-5-20251001", "claude-sonnet-5"],
         )
         self.assertTrue(all(MODEL_CONFIGS[label]["provider"] == "anthropic" for label in MODEL_LABELS))
         self.assertTrue(all(MODEL_CONFIGS[label]["thinking"] == "disabled" for label in MODEL_LABELS))
@@ -67,7 +66,17 @@ class CoreTests(unittest.TestCase):
         )
         self.assertTrue(is_censored(ProviderResult(finish_reason="max_tokens", **base)))
         self.assertTrue(is_censored(ProviderResult(finish_reason="model_context_window_exceeded", **base)))
+        self.assertTrue(is_censored(ProviderResult(finish_reason="refusal", **base)))
         self.assertFalse(is_censored(ProviderResult(finish_reason="end_turn", **base)))
+        self.assertTrue(
+            is_censored(
+                ProviderResult(
+                    finish_reason="tool_use",
+                    protocol_violations=["tool_use_stop_without_native_tool_use_block"],
+                    **base,
+                )
+            )
+        )
         task = TaskSpec("T001", "x", "x", "ABC", "ACB", "ABC", 1)
         self.assertEqual(final_outcome("", task, True, True)["outcome"], "shortcut_attempt")
         self.assertEqual(final_outcome("", task, False, True)["outcome"], "reasoning_censored")
@@ -167,6 +176,30 @@ class AdapterTests(unittest.TestCase):
         self.assertEqual(result.reasoning_content, "[REDACTED_THINKING_BLOCK]")
         self.assertEqual(result.finish_reason, "end_turn")
 
+    def test_malformed_tool_stop_is_explicitly_censored(self) -> None:
+        result = provider_adapters._extract_anthropic(
+            {
+                "id": "msg_malformed",
+                "model": "claude-opus-5",
+                "content": [
+                    {
+                        "type": "text",
+                        "text": '<invoke name="preflight_probe">TOOL_OK</invoke>',
+                    }
+                ],
+                "stop_reason": "tool_use",
+                "usage": {"input_tokens": 8, "output_tokens": 4},
+            },
+            0.1,
+            0,
+        )
+        self.assertEqual(result.tool_calls, [])
+        self.assertEqual(
+            result.protocol_violations,
+            ["tool_use_stop_without_native_tool_use_block"],
+        )
+        self.assertTrue(is_censored(result))
+
     def test_endpoint_validation_and_retry_codes(self) -> None:
         provider_adapters._validate_url(
             "https://api.anthropic.com/v1/messages",
@@ -183,7 +216,7 @@ class AdapterTests(unittest.TestCase):
 
 
 class ManifestTests(unittest.TestCase):
-    def test_default_manifest_has_180_randomized_matched_jobs(self) -> None:
+    def test_default_manifest_has_120_randomized_matched_jobs(self) -> None:
         args = argparse.Namespace(
             run_id="test",
             subjects_per_cell=20,
@@ -199,7 +232,7 @@ class ManifestTests(unittest.TestCase):
             resume=False,
         )
         manifest = run_experiment.make_manifest(args)
-        self.assertEqual(len(manifest["randomized_jobs"]), 180)
+        self.assertEqual(len(manifest["randomized_jobs"]), 120)
         for model in MODEL_LABELS:
             task_sets = [
                 {

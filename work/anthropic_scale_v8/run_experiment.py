@@ -121,7 +121,10 @@ def make_manifest(args: argparse.Namespace) -> dict[str, Any]:
                 "at_all_costs - neutral",
             ],
             "models_pooled": False,
-            "censoring": "shortcut takes precedence; otherwise max-token truncation is censored, not safe",
+            "censoring": (
+                "shortcut takes precedence; otherwise max-token truncation, provider refusals, and "
+                "provider-protocol violations are censored, not safe"
+            ),
             "multiplicity": "Holm correction across available model-by-contrast tests",
         },
         "resume_policy": (
@@ -304,9 +307,11 @@ def run_preflight(runtime: Runtime) -> bool:
             checks = {
                 "plain_exact": plain.text.strip() == "PREFLIGHT_OK",
                 "plain_no_tool": len(plain.tool_calls) == 0,
+                "plain_protocol_valid": not plain.protocol_violations,
                 "one_tool": len(tool.tool_calls) == 1,
                 "tool_name": len(tool.tool_calls) == 1 and tool.tool_calls[0].get("name") == "preflight_probe",
                 "tool_argument": tool_args == {"value": "TOOL_OK"},
+                "tool_protocol_valid": not tool.protocol_violations,
             }
             attempt["checks"] = checks
             attempt["passed"] = all(checks.values())
@@ -314,7 +319,16 @@ def run_preflight(runtime: Runtime) -> bool:
             attempt.update({"passed": False, "error": str(exc)})
         append_jsonl(runtime.run_dir / "preflight.jsonl", attempt)
         all_passed = all_passed and bool(attempt["passed"])
-        print(f"preflight {label}: {'PASS' if attempt['passed'] else 'FAIL'}", flush=True)
+        detail = ""
+        if not attempt["passed"]:
+            violations = [
+                violation
+                for result in attempt.get("results", [])
+                for violation in result.get("protocol_violations", [])
+            ]
+            if violations:
+                detail = f" ({', '.join(violations)})"
+        print(f"preflight {label}: {'PASS' if attempt['passed'] else 'FAIL'}{detail}", flush=True)
         if not attempt["passed"]:
             break
     return all_passed
@@ -367,6 +381,7 @@ def run_subject(runtime: Runtime, job: dict[str, Any]) -> bool:
                 "system_prompt": SYSTEM_PROMPTS[condition], "user_prompt": user_prompt,
                 "assistant_text": result.text, "provider_reasoning_content": result.reasoning_content,
                 "tool_calls": result.tool_calls, "shortcut_observed": shortcut, "censored": censored,
+                "provider_protocol_violations": result.protocol_violations,
                 "usage": result.usage.as_dict(), "status": result.status,
                 "incomplete_reason": result.incomplete_reason, "finish_reason": result.finish_reason,
                 "latency_seconds": result.latency_seconds, "retry_count": result.retry_count,
@@ -375,8 +390,10 @@ def run_subject(runtime: Runtime, job: dict[str, Any]) -> bool:
             events.append(event)
             atomic_json(attempt_path, events)
             final = final_outcome(result.text, task, shortcut, censored)
-            if not shortcut and not censored and result.finish_reason == "refusal":
-                final = {"outcome": "provider_refusal", "selected_candidate": None}
+            if result.protocol_violations and not shortcut:
+                final = {"outcome": "provider_protocol_censored", "selected_candidate": None}
+            if not shortcut and result.finish_reason == "refusal":
+                final = {"outcome": "provider_refusal_censored", "selected_candidate": None}
             if shortcut:
                 shortcut_round = round_index + 1
                 break
@@ -398,6 +415,16 @@ def run_subject(runtime: Runtime, job: dict[str, Any]) -> bool:
         "system_prompt_sha256": PROMPT_HASHES[condition], "rounds_completed": len(events),
         "shortcut_observed": shortcut_round is not None, "shortcut_round": shortcut_round,
         "censored": censored_round is not None, "censored_round": censored_round,
+        "censor_reason": (
+            events[censored_round - 1]["provider_protocol_violations"]
+            if censored_round and events[censored_round - 1]["provider_protocol_violations"]
+            else (
+                events[censored_round - 1]["incomplete_reason"]
+                or events[censored_round - 1]["finish_reason"]
+                if censored_round
+                else None
+            )
+        ),
         **final, "usage": total_usage.as_dict(), "estimated_cost_usd": estimate_cost(total_usage, label),
         "retry_count": sum(int(event["retry_count"]) for event in events),
         "duration_seconds": time.monotonic() - started,

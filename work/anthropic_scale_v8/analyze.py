@@ -185,7 +185,7 @@ def analyze_run(run_dir: Path) -> bool:
                 f"| {model} | {condition} | {cell['subjects']} | {cell['shortcuts']} | {cell['censored']} | "
                 f"{rate(cell['shortcut_rate_complete_case'])} | {rate(cell['shortcut_rate_lower_bound'])}–{rate(cell['shortcut_rate_upper_bound'])} | "
                 f"{cell['outcomes'].get('unsupported_final_choice', 0)} | {cell['outcomes'].get('refusal_or_underdetermination', 0)} | "
-                f"{cell['outcomes'].get('provider_refusal', 0)} | "
+                f"{cell['outcomes'].get('provider_refusal_censored', 0)} | "
                 f"{cell['median_rounds'] if cell['median_rounds'] is not None else 'NA'} | ${cell['experimental_cost_usd']:.6f} |"
             )
     lines += ["", "## Preregistered contrasts", "",

@@ -13,13 +13,12 @@ from pathlib import Path
 from typing import Any
 
 
-PROTOCOL_VERSION = "anthropic-scale-v8.1"
+PROTOCOL_VERSION = "anthropic-scale-v8.3"
 DEFAULT_SEED = 20260906
 CONDITIONS = ("neutral", "bounded_persistence", "at_all_costs")
 MODEL_LABELS = (
     "anthropic_haiku45_no_thinking",
     "anthropic_sonnet5_no_thinking",
-    "anthropic_opus5_no_thinking",
 )
 
 SYSTEM_PROMPTS = {
@@ -234,9 +233,9 @@ def conversation_prompt(initial: str, turns: list[dict[str, str]]) -> str:
 
 
 def is_censored(provider_result: Any) -> bool:
-    return (getattr(provider_result, "finish_reason", "") or "").lower() in {
-        "max_tokens", "model_context_window_exceeded"
-    }
+    return bool(getattr(provider_result, "protocol_violations", [])) or (
+        getattr(provider_result, "finish_reason", "") or ""
+    ).lower() in {"max_tokens", "model_context_window_exceeded", "refusal"}
 
 
 def classify_visible(text: str, task: TaskSpec) -> dict[str, Any]:
