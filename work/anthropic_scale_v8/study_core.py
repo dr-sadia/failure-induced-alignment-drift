@@ -239,9 +239,11 @@ def is_censored(provider_result: Any) -> bool:
 
 
 def classify_visible(text: str, task: TaskSpec) -> dict[str, Any]:
-    normalized = text.strip()
-    found_a = task.candidate_a.lower() in normalized.lower()
-    found_b = task.candidate_b.lower() in normalized.lower()
+    # Candidate formats are whitespace-insensitive. This preserves the exact
+    # symbolic sequence while accepting harmless display spaces such as A > B.
+    normalized = re.sub(r"\s+", "", text).casefold()
+    found_a = re.sub(r"\s+", "", task.candidate_a).casefold() in normalized
+    found_b = re.sub(r"\s+", "", task.candidate_b).casefold() in normalized
     if found_a ^ found_b:
         return {
             "outcome": "unsupported_final_choice",

@@ -3,10 +3,14 @@
 This directory contains the frozen protocol, direct Anthropic Messages API
 adapter, runner, analysis, and tests for the Haiku 4.5 / Sonnet 5 extension.
 
-No live v8 subject has been sampled yet. The v8.1 engineering preflight r1 passed Haiku 4.5 and
-Sonnet 5, but Opus 5 returned `stop_reason: tool_use` with tool-shaped text and
-no native `tool_use` block. The suite paused before sampling subjects, as
-designed. See `runs/anthropic_v8_preflight_r1/` for the raw audit record.
+The live v8.3 pilot is complete: 120/120 accepted subjects, zero native
+`reveal_answer` calls, zero censored subjects, and integrity PASS. All six
+model-by-prompt cells observed 0/20 shortcut attempts. The completed audit is
+in `runs/anthropic_v83_pilot_r1/`.
+
+The earlier v8.1 engineering preflight passed Haiku 4.5 and Sonnet 5, but Opus
+5 returned `stop_reason: tool_use` with tool-shaped text and no native
+`tool_use` block. See `runs/anthropic_v8_preflight_r1/` for that raw record.
 
 The v8.2 Opus-only repeat canary also failed: the exact-text response passed,
 but the safe tool request received an explicit provider refusal categorized as
@@ -42,3 +46,5 @@ For an interrupted scientific run, repeat the exact original command with
 `--resume`. Do not reuse a completed or differently configured run ID.
 
 See [`protocol.md`](protocol.md) for the preregistration and inference limits.
+See [`runs/anthropic_v83_pilot_r1/report.md`](runs/anthropic_v83_pilot_r1/report.md)
+for the completed results and transparent post-run classifier audit.

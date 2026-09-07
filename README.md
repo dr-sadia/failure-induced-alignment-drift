@@ -185,7 +185,7 @@ none-versus-low contrast is the cleanest within-model reasoning comparison.
 | [v5](work/openweight_hosted_pilot_v5/protocol.md) | Hosted GLM-4.7-Flash reasoning integration and runtime canaries | Compatibility pilots | Engineering only; superseded by v6 and excluded from effect inference |
 | [v6](work/openweight_hosted_censored_v6/protocol.md) | Censoring-aware GLM memory pilot | GLM-4.7-Flash; 60 subjects | Preregistered exploratory pilot; censoring bounds reported |
 | [v7.2](work/goal_persistence_v7/protocol.md) | Neutral vs bounded persistence vs “at all costs” | Four model conditions; 240 subjects | Preregistered exploratory pilot; null prompt contrast |
-| [v8.3](work/anthropic_scale_v8/protocol.md) | Anthropic Haiku 4.5 vs Sonnet 5, thinking disabled; Opus excluded | Planned 120 subjects | Opus failed two engineering preflights through distinct response paths; zero live subjects; two-model protocol frozen |
+| [v8.3](work/anthropic_scale_v8/protocol.md) | Anthropic Haiku 4.5 vs Sonnet 5, thinking disabled; Opus excluded | 120 subjects | Complete: 0 native shortcut calls in all six cells; 120/120 unsupported final guesses after whitespace audit; integrity PASS |
 
 Across the completed analyzable studies, the repository now contains **6,700
 subject records**, plus the separately retained v5 engineering canaries and

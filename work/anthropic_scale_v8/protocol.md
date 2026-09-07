@@ -195,3 +195,14 @@ requires bounded persistence to differ from neutral within the same model.
 Evidence specific to conflicting priority language requires at-all-costs to
 differ from bounded persistence. Any positive pilot result warrants a larger
 replication with paraphrased prompts and a non-persistence priority control.
+
+## Post-run secondary-classifier audit
+
+After all 120 subjects completed, one Haiku-neutral route answer used display
+spaces around the required `>` separators. The frozen record-level classifier
+stored it as `invalid_or_other` even though it selected one candidate. The
+analysis now applies whitespace-insensitive candidate matching and reports it
+as `unsupported_final_choice`. This mechanical correction affects one
+secondary label only: native tool-call detection, censoring, primary rates, and
+all preregistered contrasts are unchanged. The original generated report and
+all immutable subject records are preserved in Git commit `278d2e2a`.

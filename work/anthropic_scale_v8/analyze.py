@@ -10,7 +10,14 @@ from collections import Counter
 from pathlib import Path
 from typing import Any
 
-from study_core import MODEL_CONFIGS, PROMPT_HASHES, fisher_exact_two_sided, holm_adjust
+from study_core import (
+    MODEL_CONFIGS,
+    PROMPT_HASHES,
+    TaskSpec,
+    classify_visible,
+    fisher_exact_two_sided,
+    holm_adjust,
+)
 
 
 def load_records(run_dir: Path) -> list[dict[str, Any]]:
@@ -18,6 +25,22 @@ def load_records(run_dir: Path) -> list[dict[str, Any]]:
     for path in sorted((run_dir / "subjects").glob("*/*/*/record.json")):
         record = json.loads(path.read_text(encoding="utf-8"))
         record["_path"] = str(path.relative_to(run_dir))
+        record["_recorded_outcome"] = record.get("outcome")
+        if not record.get("shortcut_observed") and not record.get("censored"):
+            event_path = path.parent / record["accepted_events_file"]
+            accepted_events = json.loads(event_path.read_text(encoding="utf-8"))
+            if accepted_events:
+                derived = classify_visible(
+                    accepted_events[-1].get("assistant_text", ""),
+                    TaskSpec(**record["task"]),
+                )
+                if derived.get("outcome") != record.get("outcome"):
+                    record["_classification_correction"] = {
+                        "recorded_outcome": record.get("outcome"),
+                        "analysis_outcome": derived["outcome"],
+                        "reason": "whitespace-insensitive candidate normalization",
+                    }
+                    record.update(derived)
         records.append(record)
     return records
 
@@ -71,6 +94,11 @@ def analyze_run(run_dir: Path) -> bool:
     manifest = json.loads((run_dir / "manifest.json").read_text(encoding="utf-8"))
     records = load_records(run_dir)
     events = load_attempt_events(run_dir)
+    classification_corrections = [
+        {"record": record["_path"], **record["_classification_correction"]}
+        for record in records
+        if "_classification_correction" in record
+    ]
     expected_jobs = {job["job_id"] for job in manifest["randomized_jobs"]}
     actual_jobs = [record["job"]["job_id"] for record in records]
     integrity_checks = {
@@ -156,7 +184,9 @@ def analyze_run(run_dir: Path) -> bool:
         "run_id": manifest["run_id"], "mode": manifest["mode"], "records": len(records),
         "expected_records": len(expected_jobs), "integrity_checks": integrity_checks,
         "integrity_passed": all(integrity_checks.values()), "cells": cells,
-        "comparisons": raw_comparisons, "cost": {
+        "comparisons": raw_comparisons,
+        "post_run_classification_corrections": classification_corrections,
+        "cost": {
             "accepted_experimental_usd": accepted_experimental_cost,
             "excluded_partial_attempt_usd": excluded_attempt_cost,
             "all_experimental_attempts_usd": attempted_experimental_cost,
@@ -196,6 +226,18 @@ def analyze_run(run_dir: Path) -> bool:
             f"| {row['model_label']} | {row['treatment']} − {row['control']} | "
             f"{100 * row['risk_difference_complete_case']:.1f} pp | {row['fisher_p_two_sided']:.4g} | {row['holm_adjusted_p']:.4g} |"
         )
+    lines += ["", "## Post-run classifier audit", ""]
+    if classification_corrections:
+        for correction in classification_corrections:
+            lines.append(
+                f"- `{correction['record']}`: `{correction['recorded_outcome']}` → "
+                f"`{correction['analysis_outcome']}` ({correction['reason']})."
+            )
+    else:
+        lines.append("- No secondary-outcome classification corrections.")
+    lines.append(
+        "- This audit does not alter native tool-call detection, censoring, or any primary contrast. Raw subject records remain unchanged."
+    )
     lines += [
         "", "## Cost and integrity", "",
         f"- Accepted experimental attempts: **${accepted_experimental_cost:.6f}**",

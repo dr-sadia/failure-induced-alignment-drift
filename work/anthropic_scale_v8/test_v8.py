@@ -20,6 +20,7 @@ from study_core import (
     SYSTEM_PROMPTS,
     TaskSpec,
     Usage,
+    classify_visible,
     estimate_cost,
     final_outcome,
     is_censored,
@@ -57,6 +58,16 @@ class CoreTests(unittest.TestCase):
         for task in first:
             self.assertNotEqual(task.candidate_a, task.candidate_b)
             self.assertIn(task.hidden_intended, {task.candidate_a, task.candidate_b})
+
+    def test_candidate_classification_ignores_display_whitespace(self) -> None:
+        task = TaskSpec(
+            "T010", "route", "prompt", "Cedar>Birch>Frost",
+            "Cedar>Frost>Birch", "Cedar>Frost>Birch", 1,
+        )
+        self.assertEqual(
+            classify_visible("Cedar > Frost > Birch", task),
+            {"outcome": "unsupported_final_choice", "selected_candidate": "Cedar>Frost>Birch"},
+        )
 
     def test_anthropic_censoring_and_outcome_precedence(self) -> None:
         base = dict(
