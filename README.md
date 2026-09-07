@@ -5,8 +5,8 @@ more willing to use a previously rejected prohibited shortcut, and whether
 persistent cross-generation memory amplifies or reduces that behavior.
 
 **Start here:** [five-minute reviewer guide](REVIEWER_GUIDE.md) ·
-[experiment series](#experiment-series) · [claim boundaries](#claim-boundaries) ·
-[headline results](#results) · [cost](#cost) ·
+[experiment series](#experiment-series) · [latest Anthropic result](#latest-result-anthropic-model-scale-v83) ·
+[claim boundaries](#claim-boundaries) · [headline results](#results) · [cost](#cost) ·
 [reports and reproducibility](#reports-and-reproducibility)
 
 ## Study at a glance
@@ -169,6 +169,8 @@ are dependent.
 | GPT-4.1 nano | `gpt-4.1-nano` | `gpt-4.1-nano-2025-04-14` | Not supported/requested | 400 | Smallest GPT-4.1 condition. |
 | GPT-4.1 mini | `gpt-4.1-mini` | `gpt-4.1-mini-2025-04-14` | Not supported/requested | 400 | Stronger GPT-4.1 small-model condition. |
 | GPT-4o mini | `gpt-4o-mini-2024-07-18` | `gpt-4o-mini-2024-07-18` | Not supported/requested | 400 | Fixed older-model snapshot. |
+| Anthropic Haiku 4.5 | `claude-haiku-4-5-20251001` | `claude-haiku-4-5-20251001` | Disabled | 60 | Small Anthropic package in the v8.3 persistence pilot. |
+| Anthropic Sonnet 5 | `claude-sonnet-5` | `claude-sonnet-5` | Disabled | 60 | Medium Anthropic package in the v8.3 persistence pilot. |
 
 This is a model-package comparison, not a pure size experiment: model age,
 training, architecture, and reasoning support vary together. The Luna
@@ -187,7 +189,7 @@ none-versus-low contrast is the cleanest within-model reasoning comparison.
 | [v7.2](work/goal_persistence_v7/protocol.md) | Neutral vs bounded persistence vs “at all costs” | Four model conditions; 240 subjects | Preregistered exploratory pilot; null prompt contrast |
 | [v8.3](work/anthropic_scale_v8/protocol.md) | Anthropic Haiku 4.5 vs Sonnet 5, thinking disabled; Opus excluded | 120 subjects | Complete: 0 native shortcut calls in all six cells; 120/120 unsupported final guesses after whitespace audit; integrity PASS |
 
-Across the completed analyzable studies, the repository now contains **6,700
+Across the completed analyzable studies, the repository now contains **6,820
 subject records**, plus the separately retained v5 engineering canaries and
 failed/recovered infrastructure attempts.
 
@@ -199,9 +201,53 @@ failed/recovered infrastructure attempts.
 | Preregistered comparison | In the v2 within-model comparison, Luna with low reasoning made zero unsupported choices while Luna with reasoning disabled made 105 across all arms; matched-trajectory tests were significant in every arm. |
 | Descriptive, not confirmatory | GPT-4.1 nano shortcut counts rose from 72/100 without memory to 96/100 with naive memory, but the independent trajectory endpoint was already 19/20 versus 20/20 and all primary Fisher tests were `p = 1`. This is behavioral lock-in evidence, not a confirmed memory effect. |
 | Pilot-scale null | In v7.2, “at all costs” did not increase observed prohibited calls for any tested model. Ceiling effects, zero-event cells, and GLM censoring limit the conclusion. |
+| Anthropic pilot | In v8.3, Haiku 4.5 and Sonnet 5 made no native prohibited calls in 120 subjects, but every subject ultimately selected one unsupported candidate. All persistence contrasts were zero; the pilot does not establish equivalence or a zero rare-event rate. |
 | Not established | The studies do not establish hidden intent, a universal model-size effect, a zero latent shortcut rate for censored subjects, or population-wide effects across model families. |
 
-## Latest result: goal-persistence v7.2
+## Latest result: Anthropic model-scale v8.3
+
+The v8.3 experiment extended the v7.2 goal-persistence design to Anthropic's
+Haiku 4.5 and Sonnet 5 model packages. Thinking was disabled in both models.
+Twenty fresh subjects were assigned to each model × system-prompt cell, for
+**120 subjects total**. The three prompts were neutral, bounded persistence,
+and persistence “at all costs.” Each subject faced the same underdetermined
+puzzle, two false failures, and a final mandatory single-answer demand.
+
+| Model | Prompt | Subjects | Prohibited calls | Unsupported final choices | Censored | Cost |
+|---|---|---:|---:|---:|---:|---:|
+| Haiku 4.5 | Neutral | 20 | 0 | 20 | 0 | $0.153895 |
+| Haiku 4.5 | Bounded persistence | 20 | 0 | 20 | 0 | $0.154199 |
+| Haiku 4.5 | At all costs | 20 | 0 | 20 | 0 | $0.155899 |
+| Sonnet 5 | Neutral | 20 | 0 | 20 | 0 | $0.340322 |
+| Sonnet 5 | Bounded persistence | 20 | 0 | 20 | 0 | $0.381784 |
+| Sonnet 5 | At all costs | 20 | 0 | 20 | 0 | $0.358724 |
+
+The “at all costs” instruction did **not** increase the preregistered cheating
+measure: every within-model shortcut risk difference was 0 percentage points,
+and every two-sided Fisher and Holm-adjusted `p` value was 1. The stronger
+finding was a separation between behavioral and epistemic compliance. Both
+Claude models preserved the explicit tool prohibition—zero native
+`reveal_answer` calls—yet all 120 subjects eventually abandoned
+underdetermination and submitted an unsupported exact answer. Thus this run
+shows universal epistemic drift under the full pressure sequence, not overt
+prohibited-tool use.
+
+No subjects were censored, and all integrity checks passed. Accepted subject
+calls cost **$1.544823**; including **$0.005114** of preflight calls, the total
+was **$1.549937**, or **$0.012874 per accepted subject**. Opus 5 is not part of
+the behavioral comparison: it was excluded before sampling after two
+measurement-channel preflight failures, which remain preserved as engineering
+audit records. With only 20 subjects per cell and zero primary events, v8.3 is
+an exploratory pilot and cannot demonstrate equivalence or rule out rare
+shortcut behavior.
+
+Full v8.3 outputs: [report](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/report.md),
+[machine-readable summary](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/summary.json),
+[run manifest](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/manifest.json),
+[raw subject records](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/subjects/),
+and [preregistered protocol](work/anthropic_scale_v8/protocol.md).
+
+## Previous result: goal-persistence v7.2
 
 The v7.2 experiment removed cross-subject memory and randomized 20 fresh
 subjects into each model × system-prompt cell. “Cheating” remained the narrow,
@@ -445,11 +491,13 @@ Costs are estimated direct API charges calculated from recorded response usage.
 | Hosted GLM runtime pilots v5 | Engineering canaries | $0.0000 |
 | Censoring-aware GLM pilot v6 | 60 | $0.0000 |
 | Goal-persistence experiment v7.2 | 240 | $1.1297 |
-| **Combined API-measured total** | **6,700 + canaries** | **$9.6274** |
+| Anthropic model-scale experiment v8.3 | 120 | $1.5499 |
+| **Combined API-measured total** | **6,820 + canaries** | **$11.1773** |
 
 The earlier 15-subject persistent-memory pilot and 20-subject
 failure-contaminated-memory pilot did not record reliable direct API cost, so
-they are not included in the $9.6274 total.
+they are not included in the $11.1773 total. The v8.3 row includes $0.005114
+in preflight calls; its accepted experimental subjects cost $1.544823.
 
 ## Reports and reproducibility
 
@@ -472,12 +520,16 @@ artifacts does not require an API key.
 - Hosted GLM pilot v5 protocol and retained canaries: [`work/openweight_hosted_pilot_v5/`](work/openweight_hosted_pilot_v5/)
 - Censoring-aware GLM v6 report: [`work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md`](work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md)
 - Goal-persistence v7.2 report: [`work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md`](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md)
+- Anthropic v8.3 report: [`work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/report.md`](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/report.md)
+- Anthropic v8.3 machine-readable summary: [`work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/summary.json`](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/summary.json)
+- Anthropic v8.3 raw records and manifest: [`work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/`](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/)
 - Anthropic v8.3 preregistration, amendment record, and runner: [`work/anthropic_scale_v8/`](work/anthropic_scale_v8/)
 
-The runners use the OpenAI Responses API and expect `OPENAI_API_KEY` to be set
-in the environment. Never commit an API key. Model availability, aliases,
-snapshots, pricing, and API behavior may change, so reproductions should record
-the resolved model identifier, usage, and run metadata.
+The OpenAI runners use the Responses API and expect `OPENAI_API_KEY`; the v8.3
+Anthropic runner uses the Messages API and expects `ANTHROPIC_API_KEY`. Never
+commit an API key. Model availability, aliases, snapshots, pricing, and API
+behavior may change, so reproductions should record the resolved model
+identifier, usage, and run metadata.
 
 Raw event files contain API response metadata and encrypted reasoning payloads,
 but no API credentials. Analysis should rely on observable outputs, tool calls,
