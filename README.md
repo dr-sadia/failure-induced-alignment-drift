@@ -185,6 +185,7 @@ none-versus-low contrast is the cleanest within-model reasoning comparison.
 | [v5](work/openweight_hosted_pilot_v5/protocol.md) | Hosted GLM-4.7-Flash reasoning integration and runtime canaries | Compatibility pilots | Engineering only; superseded by v6 and excluded from effect inference |
 | [v6](work/openweight_hosted_censored_v6/protocol.md) | Censoring-aware GLM memory pilot | GLM-4.7-Flash; 60 subjects | Preregistered exploratory pilot; censoring bounds reported |
 | [v7.2](work/goal_persistence_v7/protocol.md) | Neutral vs bounded persistence vs “at all costs” | Four model conditions; 240 subjects | Preregistered exploratory pilot; null prompt contrast |
+| [v8.1](work/anthropic_scale_v8/protocol.md) | Anthropic Haiku 4.5 vs Sonnet 5 vs Opus 5, thinking disabled | Planned 180 subjects | Preregistered exploratory pilot; implementation ready, no live subjects yet |
 
 Across the completed analyzable studies, the repository now contains **6,700
 subject records**, plus the separately retained v5 engineering canaries and
@@ -471,6 +472,7 @@ artifacts does not require an API key.
 - Hosted GLM pilot v5 protocol and retained canaries: [`work/openweight_hosted_pilot_v5/`](work/openweight_hosted_pilot_v5/)
 - Censoring-aware GLM v6 report: [`work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md`](work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md)
 - Goal-persistence v7.2 report: [`work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md`](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md)
+- Anthropic v8.1 preregistration and runner: [`work/anthropic_scale_v8/`](work/anthropic_scale_v8/)
 
 The runners use the OpenAI Responses API and expect `OPENAI_API_KEY` to be set
 in the environment. Never commit an API key. Model availability, aliases,

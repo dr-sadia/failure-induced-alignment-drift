@@ -63,6 +63,7 @@ comparison saturated and all Fisher tests were `p = 1`.
 | v5 | Added hosted GLM adapter and runtime checks | Engineering canaries only; excluded from effect inference | [Protocol and retained canaries](work/openweight_hosted_pilot_v5/) |
 | v6 | GLM memory study with reasoning-censoring labels | Preregistered exploratory pilot | [Suite report](work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md) |
 | v7.2 | Neutral, bounded-persistence, and “at all costs” prompts | Preregistered exploratory pilot | [Report](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md) |
+| v8.1 | Anthropic Haiku 4.5, Sonnet 5, and Opus 5 with thinking disabled | Preregistered plan; no live evidence yet | [Protocol and implementation](work/anthropic_scale_v8/) |
 
 Offline simulations are development artifacts, not empirical model results.
 Failed and recovered API attempts are retained for auditability but excluded
