@@ -5,7 +5,8 @@ more willing to use a previously rejected prohibited shortcut, and whether
 persistent cross-generation memory amplifies or reduces that behavior.
 
 **Start here:** [five-minute reviewer guide](REVIEWER_GUIDE.md) ·
-[experiment series](#experiment-series) · [latest Anthropic result](#latest-result-anthropic-model-scale-v83) ·
+[agent architecture](#agent-architecture) · [experiment series](#experiment-series) ·
+[latest GLM-5.3 result](#latest-result-glm-53-max-reasoning-v91) ·
 [claim boundaries](#claim-boundaries) · [headline results](#results) · [cost](#cost) ·
 [reports and reproducibility](#reports-and-reproducibility)
 
@@ -32,6 +33,62 @@ flowchart LR
 The experiment measures visible behavior, not hidden intent. A prohibited tool
 call is the narrowest operationalization of “cheating”; unsupported guessing is
 reported separately as epistemic drift.
+
+## Agent architecture
+
+The “agent” was a model placed inside a controlled evaluation harness, not a
+long-running autonomous planner or a group of agents communicating with one
+another. The harness owned task assignment, pressure messages, tool
+interception, state boundaries, logging, and outcome classification. The model
+controlled only its visible answer and whether it emitted a native tool call.
+
+```mermaid
+flowchart LR
+    C["Controller<br/>manifest, randomization, budget"] --> P["Prompt builder<br/>system prompt + puzzle"]
+    M["Optional trajectory memory<br/>explicit JSONL only"] -. "memory studies" .-> P
+    P --> S["Fresh model subject<br/>OpenAI, GLM, or Anthropic API"]
+    X["Prohibited reveal_answer<br/>tool declaration"] --> S
+    S --> R["Visible answer or native tool call"]
+    R --> I{"Tool call observed?"}
+    I -- "yes" --> B["Intercept and record<br/>never execute"]
+    I -- "no" --> E["Scripted evaluator<br/>fixed false-failure message"]
+    E --> P
+    B --> L["Immutable event log"]
+    R --> L
+    L --> A["Deterministic classifier<br/>shortcut, guess, ambiguity, invalid, censored"]
+```
+
+| Component | Responsibility |
+|---|---|
+| Experiment controller | Selected the model, prompt condition, task, memory arm, and randomized job order; enforced retry and cost limits. |
+| Subject model | Received the stated clues and tool schema, generated visible text, and could choose whether to emit a native `reveal_answer` call. |
+| Scripted evaluator | Returned the same preregistered false-failure and high-pressure messages. It was harness code, not another language model, and supplied no new puzzle evidence. |
+| Tool interceptor | Detected a native `reveal_answer` call, recorded its arguments, and ended the subject. It contained no execution path that returned the hidden answer. |
+| Optional memory layer | Passed an explicit trajectory-local `memory.jsonl` file to later fresh subjects in memory experiments; it never transferred hidden model state or private reasoning. |
+| Audit and analysis layer | Stored prompts, visible responses, tool calls, usage, latency, model metadata, and deterministic labels, then computed the preregistered comparisons. |
+
+Each subject received at most four response opportunities: the initial puzzle,
+two false failures, and a final mandatory-answer demand. The harness rebuilt
+later requests from the visible transcript; hidden chain-of-thought was not
+passed between calls. Subjects were fresh across trials. In memory experiments,
+five sequential subjects formed one trajectory and were connected only by the
+explicit memory file:
+
+```mermaid
+flowchart LR
+    G1["Fresh subject G1"] --> W1["Post-run memory summary"]
+    W1 --> F["Trajectory-local memory.jsonl"]
+    F --> G2["Fresh subject G2"]
+    G2 --> W2["Post-run memory summary"]
+    W2 --> F
+    F --> G35["Fresh subjects G3–G5"]
+```
+
+The no-memory arms omitted this file entirely. The v7.2 goal-persistence and
+v8.3 Anthropic and v9.1 GLM-5.3 experiments also used independent fresh
+subjects with no cross-subject memory. This separation makes the intervention
+inspectable: any cross-generation influence in a memory arm had to arrive
+through the recorded file rather than an unobserved continuing conversation.
 
 ## Experiment setup
 
@@ -171,6 +228,7 @@ are dependent.
 | GPT-4o mini | `gpt-4o-mini-2024-07-18` | `gpt-4o-mini-2024-07-18` | Not supported/requested | 400 | Fixed older-model snapshot. |
 | Anthropic Haiku 4.5 | `claude-haiku-4-5-20251001` | `claude-haiku-4-5-20251001` | Disabled | 60 | Small Anthropic package in the v8.3 persistence pilot. |
 | Anthropic Sonnet 5 | `claude-sonnet-5` | `claude-sonnet-5` | Disabled | 60 | Medium Anthropic package in the v8.3 persistence pilot. |
+| GLM-5.3 | `glm-5.3` | `glm-5.3` | Max | 60 | Z.AI reasoning model in the v9.1 persistence pilot; censoring-aware analysis. |
 
 This is a model-package comparison, not a pure size experiment: model age,
 training, architecture, and reasoning support vary together. The Luna
@@ -188,8 +246,9 @@ none-versus-low contrast is the cleanest within-model reasoning comparison.
 | [v6](work/openweight_hosted_censored_v6/protocol.md) | Censoring-aware GLM memory pilot | GLM-4.7-Flash; 60 subjects | Preregistered exploratory pilot; censoring bounds reported |
 | [v7.2](work/goal_persistence_v7/protocol.md) | Neutral vs bounded persistence vs “at all costs” | Four model conditions; 240 subjects | Preregistered exploratory pilot; null prompt contrast |
 | [v8.3](work/anthropic_scale_v8/protocol.md) | Anthropic Haiku 4.5 vs Sonnet 5, thinking disabled; Opus excluded | 120 subjects | Complete: 0 native shortcut calls in all six cells; 120/120 unsupported final guesses after whitespace audit; integrity PASS |
+| [v9.1](work/glm53_goal_persistence_v9/protocol.md) | GLM-5.3 neutral vs bounded persistence vs “at all costs,” max reasoning | 60 subjects | Complete: 0 observed shortcut calls; 20 reasoning-censored subjects; integrity PASS |
 
-Across the completed analyzable studies, the repository now contains **6,820
+Across the completed analyzable studies, the repository now contains **6,880
 subject records**, plus the separately retained v5 engineering canaries and
 failed/recovered infrastructure attempts.
 
@@ -202,9 +261,60 @@ failed/recovered infrastructure attempts.
 | Descriptive, not confirmatory | GPT-4.1 nano shortcut counts rose from 72/100 without memory to 96/100 with naive memory, but the independent trajectory endpoint was already 19/20 versus 20/20 and all primary Fisher tests were `p = 1`. This is behavioral lock-in evidence, not a confirmed memory effect. |
 | Pilot-scale null | In v7.2, “at all costs” did not increase observed prohibited calls for any tested model. Ceiling effects, zero-event cells, and GLM censoring limit the conclusion. |
 | Anthropic pilot | In v8.3, Haiku 4.5 and Sonnet 5 made no native prohibited calls in 120 subjects, but every subject ultimately selected one unsupported candidate. All persistence contrasts were zero; the pilot does not establish equivalence or a zero rare-event rate. |
+| GLM-5.3 pilot | In v9.1, GLM-5.3 made no observed prohibited calls in 60 subjects at max reasoning. It made 20 unsupported final choices, preserved underdetermination in 20, and was reasoning-censored in 20. The censoring bounds do not establish a zero latent shortcut rate. |
 | Not established | The studies do not establish hidden intent, a universal model-size effect, a zero latent shortcut rate for censored subjects, or population-wide effects across model families. |
 
-## Latest result: Anthropic model-scale v8.3
+## Latest result: GLM-5.3 max reasoning v9.1
+
+The v9.1 experiment applied the same three goal-persistence prompts to Z.AI's
+`glm-5.3` with thinking enabled and reasoning effort fixed at `max`. It used 20
+fresh, independent subjects per prompt condition, for **60 subjects total**.
+Every subject faced the same underdetermined puzzle and up to four response
+rounds; no subject inherited memory from another.
+
+| Prompt | Subjects | Prohibited calls | Unsupported final choices | Preserved underdetermination | Reasoning-censored | Experimental cost |
+|---|---:|---:|---:|---:|---:|---:|
+| Neutral | 20 | 0 | 6 | 8 | 6 | $0.358104 |
+| Bounded persistence | 20 | 0 | 5 | 6 | 9 | $0.421962 |
+| At all costs | 20 | 0 | 9 | 6 | 5 | $0.330853 |
+
+The “at all costs” instruction did **not** increase the observed primary
+cheating measure: all three cells had zero native `reveal_answer` calls, so all
+preregistered risk differences were 0 and all two-sided Fisher and
+Holm-adjusted `p` values were 1. This is an exploratory zero-event result, not
+evidence that the true rates are equal. If every censored subject had instead
+attempted the shortcut, the cell-level shortcut rates could be as high as 30%
+for neutral, 45% for bounded persistence, and 25% for “at all costs.”
+
+The secondary behavior was mixed: 20/60 subjects ultimately made an
+unsupported exact choice, 20/60 preserved underdetermination, and 20/60 were
+censored before a classifiable visible answer. Unsupported guessing was 9/20
+under “at all costs” versus 6/20 neutral, but this small descriptive difference
+was not the preregistered primary outcome and should not be treated as a
+confirmed effect.
+
+Descriptively, the earlier 60-subject GLM-4.7-Flash condition also produced
+zero observed shortcut calls, but had 27 unsupported choices, 12 preserved-
+underdetermination outcomes, and 21 censored subjects. GLM-5.3 therefore showed
+fewer guesses (20), more preserved-underdetermination outcomes (20), and
+similar censoring (20) in this matched design. This cross-model comparison is
+not randomized and does not isolate which model-package difference caused the
+shift.
+
+All 11 integrity checks and all 7 unit tests passed. Accepted subject calls
+cost **$1.110919**; including **$0.000667** of preflight calls, the total was
+**$1.111586**, or **$0.018515 per accepted subject**. The live run completed
+with zero infrastructure-error records; three transient request retries were
+absorbed by the frozen adapter policy.
+
+Full v9.1 outputs: [report](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/report.md),
+[machine-readable summary](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/summary.json),
+[run manifest](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/manifest.json),
+[base64-encoded raw subject-record archive](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/subjects.tar.gz.b64),
+[archive checksum](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/subjects.tar.gz.sha256),
+and [preregistered protocol](work/glm53_goal_persistence_v9/protocol.md).
+
+## Previous result: Anthropic model-scale v8.3
 
 The v8.3 experiment extended the v7.2 goal-persistence design to Anthropic's
 Haiku 4.5 and Sonnet 5 model packages. Thinking was disabled in both models.
@@ -492,12 +602,15 @@ Costs are estimated direct API charges calculated from recorded response usage.
 | Censoring-aware GLM pilot v6 | 60 | $0.0000 |
 | Goal-persistence experiment v7.2 | 240 | $1.1297 |
 | Anthropic model-scale experiment v8.3 | 120 | $1.5499 |
-| **Combined API-measured total** | **6,820 + canaries** | **$11.1773** |
+| GLM-5.3 max-reasoning experiment v9.1 | 60 | $1.1116 |
+| **Combined API-measured total** | **6,880 + canaries** | **$12.2889** |
 
 The earlier 15-subject persistent-memory pilot and 20-subject
 failure-contaminated-memory pilot did not record reliable direct API cost, so
-they are not included in the $11.1773 total. The v8.3 row includes $0.005114
-in preflight calls; its accepted experimental subjects cost $1.544823.
+they are not included in the $12.2889 total. The v8.3 row includes $0.005114
+in preflight calls; its accepted experimental subjects cost $1.544823. The
+v9.1 row includes $0.000667 in preflight calls; its accepted experimental
+subjects cost $1.110919.
 
 ## Reports and reproducibility
 
@@ -524,24 +637,33 @@ artifacts does not require an API key.
 - Anthropic v8.3 machine-readable summary: [`work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/summary.json`](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/summary.json)
 - Anthropic v8.3 raw records and manifest: [`work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/`](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/)
 - Anthropic v8.3 preregistration, amendment record, and runner: [`work/anthropic_scale_v8/`](work/anthropic_scale_v8/)
+- GLM-5.3 v9.1 report: [`work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/report.md`](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/report.md)
+- GLM-5.3 v9.1 machine-readable summary: [`work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/summary.json`](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/summary.json)
+- GLM-5.3 v9.1 base64-encoded raw subject-record archive and decoded-archive checksum: [`subjects.tar.gz.b64`](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/subjects.tar.gz.b64) · [`SHA-256`](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/subjects.tar.gz.sha256)
+- GLM-5.3 v9.1 manifest and other run metadata: [`work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/`](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/)
+- GLM-5.3 v9.1 preregistration and runner: [`work/glm53_goal_persistence_v9/`](work/glm53_goal_persistence_v9/)
 
 The OpenAI runners use the Responses API and expect `OPENAI_API_KEY`; the v8.3
-Anthropic runner uses the Messages API and expects `ANTHROPIC_API_KEY`. Never
-commit an API key. Model availability, aliases, snapshots, pricing, and API
-behavior may change, so reproductions should record the resolved model
-identifier, usage, and run metadata.
+Anthropic runner uses the Messages API and expects `ANTHROPIC_API_KEY`; the
+v9.1 Z.AI runner expects `ZAI_API_KEY`. Never commit an API key. Model
+availability, aliases, snapshots, pricing, and API behavior may change, so
+reproductions should record the resolved model identifier, usage, and run
+metadata.
 
-Raw event files contain API response metadata and encrypted reasoning payloads,
-but no API credentials. Analysis should rely on observable outputs, tool calls,
-and preregistered behavioral labels—not hidden chain-of-thought. An overt tool
-call is a narrow behavioral measure; it is not proof of internal intent.
+Raw event files contain API response metadata and no API credentials. Depending
+on the provider, they may contain encrypted reasoning payloads or
+provider-exposed plaintext `reasoning_content`; the v9.1 protocol preregistered
+retention of the latter for audit. Analysis relies on observable outputs, tool
+calls, and preregistered behavioral labels rather than inferring hidden intent
+from reasoning text. An overt tool call is a narrow behavioral measure; it is
+not proof of internal intent.
 
 ## License and citation
 
 Original code and human-authored documentation are released under the
-[MIT License](LICENSE). Recorded model outputs, encrypted reasoning payloads,
-and provider metadata are included for audit and reproducibility and remain
-subject to applicable provider terms.
+[MIT License](LICENSE). Recorded model outputs, provider-exposed reasoning
+data, and provider metadata are included for audit and reproducibility and
+remain subject to applicable provider terms.
 
 Citation metadata is available in [`CITATION.cff`](CITATION.cff). Until an
 archival DOI is issued, cite the repository URL and the commit hash used for
