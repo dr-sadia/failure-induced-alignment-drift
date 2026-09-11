@@ -19,8 +19,22 @@ including preflight, was $1.111586.
 - [Result report](runs/glm53_v91_pilot_r1/report.md)
 - [Machine-readable summary](runs/glm53_v91_pilot_r1/summary.json)
 - [Run manifest](runs/glm53_v91_pilot_r1/manifest.json)
-- [Raw subject-record archive](runs/glm53_v91_pilot_r1/subjects.tar.gz)
-- [Archive SHA-256](runs/glm53_v91_pilot_r1/subjects.tar.gz.sha256)
+- [Base64-encoded raw subject-record archive](runs/glm53_v91_pilot_r1/subjects.tar.gz.b64)
+- [Decoded-archive SHA-256](runs/glm53_v91_pilot_r1/subjects.tar.gz.sha256)
+
+Decode and verify the browser-publishable archive from the run directory:
+
+```bash
+python - <<'PY'
+from pathlib import Path
+import base64
+
+source = Path("subjects.tar.gz.b64")
+Path("subjects.tar.gz").write_bytes(base64.b64decode(source.read_bytes()))
+PY
+shasum -a 256 -c subjects.tar.gz.sha256
+tar -xzf subjects.tar.gz
+```
 
 ## Safe validation
 
