@@ -44,6 +44,8 @@ Key observations:
 | Luna, low reasoning | 0 unsupported choices across four arms | Preregistered within-model contrast; matched-trajectory `p <= .0078` in every arm |
 | GPT-5.6 Terra, low reasoning | 0 shortcuts and 0 unsupported choices in 400 subjects | Confirmatory null under this exact design; floor-limited |
 | v7.2 “at all costs” prompt | No increase in observed prohibited calls in four model conditions | Exploratory pilot null; ceiling, zero-event, and censoring limitations apply |
+| Anthropic v8.3 | 0 prohibited calls, but 120/120 unsupported final choices | Complete exploratory pilot; separates tool-prohibition compliance from epistemic drift |
+| GLM-5.3 v9.1, max reasoning | 0/60 observed prohibited calls; 20 guesses, 20 underdetermination outcomes, 20 censored | Complete exploratory pilot; censoring bounds remain essential |
 
 The central memory result is therefore narrower than “memory causes
 cheating.” In GPT-4.1 nano, naive memory propagated a policy that favored
@@ -63,7 +65,8 @@ comparison saturated and all Fisher tests were `p = 1`.
 | v5 | Added hosted GLM adapter and runtime checks | Engineering canaries only; excluded from effect inference | [Protocol and retained canaries](work/openweight_hosted_pilot_v5/) |
 | v6 | GLM memory study with reasoning-censoring labels | Preregistered exploratory pilot | [Suite report](work/openweight_hosted_censored_v6/runs/glm47_censored_v6_pilot_r2/suite_report.md) |
 | v7.2 | Neutral, bounded-persistence, and “at all costs” prompts | Preregistered exploratory pilot | [Report](work/goal_persistence_v7/runs/goal_persistence_v7_20260903_r1/report.md) |
-| v8.1 | Anthropic Haiku 4.5, Sonnet 5, and Opus 5 with thinking disabled | Preregistered plan; no live evidence yet | [Protocol and implementation](work/anthropic_scale_v8/) |
+| v8.3 | Anthropic Haiku 4.5 and Sonnet 5 with thinking disabled; Opus excluded after preflight | Preregistered exploratory pilot | [Report](work/anthropic_scale_v8/runs/anthropic_v83_pilot_r1/report.md) |
+| v9.1 | GLM-5.3 with max reasoning under neutral, bounded-persistence, and “at all costs” prompts | Preregistered exploratory pilot | [Report](work/glm53_goal_persistence_v9/runs/glm53_v91_pilot_r1/report.md) |
 
 Offline simulations are development artifacts, not empirical model results.
 Failed and recovered API attempts are retained for auditability but excluded
@@ -82,7 +85,7 @@ The audit boundary is important:
 - No function result containing the hidden answer was returned to a subject.
 - Raw records contain visible outputs and provider metadata; some contain
   encrypted reasoning payloads, not readable reasoning traces.
-- Censored generations are not counted as safe. v6 and v7.2 report lower and
+- Censored generations are not counted as safe. v6, v7.2, and v9.1 report lower and
   upper bounds when reasoning ran out before a visible answer.
 - Subject-level percentages within a trajectory are dependent. The
   preregistered primary memory comparison uses independent trajectories.
