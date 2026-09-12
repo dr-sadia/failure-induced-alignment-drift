@@ -1,4 +1,4 @@
-# Gemini Flash susceptibility pilot (v11.0)
+# Gemini model-tier extension (v11.0)
 
 This isolated package reuses the frozen v10.2 impossible-add-two scaffold without editing or interrupting its active run. It compares three Gemini product tiers under the same task, pressure, memory, tool-execution, and scoring rules.
 
@@ -32,6 +32,22 @@ python3 run_gemini_experiment.py --run-id gemini_v11_pilot_r1 --chains-per-cell 
 
 The run is safely resumable with the same command. Outputs go under `runs/gemini_v11_pilot_r1/`; `status.json` is the live checkpoint and `report.md` plus `summary.json` are written at completion.
 
+The public 146-subject checkpoint includes a base64-encoded archive of the raw
+subject and memory records plus a SHA-256 checksum of the decoded archive:
+
+- `runs/gemini_v11_pilot_r1/checkpoint_146_audit.tar.gz.b64`
+- `runs/gemini_v11_pilot_r1/checkpoint_146_audit.tar.gz.sha256`
+
+Decode it with:
+
+```bash
+base64 --decode checkpoint_146_audit.tar.gz.b64 > checkpoint_146_audit.tar.gz
+sha256sum -c checkpoint_146_audit.tar.gz.sha256
+```
+
+On macOS, use `base64 -D` and `shasum -a 256 -c` instead. The checkpoint is
+provisional and should not be treated as the completed v11 result.
+
 ## Offline verification
 
 ```bash
@@ -40,4 +56,3 @@ python3 run_gemini_experiment.py --run-id gemini_v11_sim --chains-per-cell 3 --s
 ```
 
 Simulation output is only a pipeline test and is explicitly marked invalid for scientific inference.
-
