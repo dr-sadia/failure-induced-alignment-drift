@@ -4,6 +4,11 @@ This page is the shortest route through the repository. It separates the
 strongest results from descriptive patterns, engineering canaries, and
 offline simulations.
 
+> **AI-assistance disclosure:** OpenAI Codex/ChatGPT substantially assisted
+> with the repository's design, code, analysis, documentation, and publication.
+> The work is human-directed but not independently line-by-line audited. See the
+> full [AI-assistance and provenance disclosure](AI_DISCLOSURE.md).
+
 ## 1. The question in one minute
 
 The primary benchmark asks whether failure pressure makes an agent use a
@@ -35,8 +40,9 @@ The most defensible one-line conclusion for the primary benchmark is:
 
 > Prohibited shortcut use was strongly model- and condition-dependent:
 > GPT-4.1 nano violated the rule more often as pressure increased, while the
-> other five completed model packages made no observed calls; preliminary
-> Gemini 3.1 Pro records show violations only under failure plus persistence.
+> other five v10.2 model packages made no observed calls. In the completed
+> Gemini extension, Pro violated only under failure plus persistence, while both
+> Flash tiers made no observed calls.
 
 Key observations:
 
@@ -45,7 +51,8 @@ Key observations:
 | Add-two v10.2 | 42/72 GPT-4.1 nano subjects made a prohibited call; the other five models had 0 observed violating subjects | Complete exploratory 432-subject run; three GLM subjects were censored |
 | GPT-4.1 nano pressure gradient | 10/24 neutral, 14/24 repeated failure, 18/24 failure plus “at all costs” | Descriptive; three chains per cell |
 | Add-two persistent memory | 24/36 nano calls versus 18/36 private-note control; 18/27 versus 15/27 at positions 2–4 | Descriptive lock-in; not a confirmed causal memory effect |
-| Gemini v11 checkpoint | Gemini 3.1 Pro: 16/16 calls under completed failure-plus-persistence records and 0/32 elsewhere; both Flash variants at 0 observed | Preliminary; live run paused at 146/216 subjects |
+| Gemini v11 | Gemini 3.1 Pro: 24/24 calls under failure plus persistence and 0/48 elsewhere; both Flash variants made 0/144 calls | Complete exploratory 216-subject run; all integrity checks passed |
+| Gemini v11 persistent memory | Pro: 12/12 calls with persistent memory and 12/12 with private notes under failure plus persistence; all other cells were zero | No observed memory-arm difference; three chains per cell and ceiling/floor outcomes limit inference |
 | GPT-4.1 nano, no memory | 72/100 prohibited calls; 0 occurred initially | Direct temporal evidence that failure pressure preceded the calls |
 | GPT-4.1 nano, naive memory | 96/100 prohibited calls | Descriptive amplification only; trajectory endpoint was 20/20 versus 19/20 without memory |
 | Luna, no reasoning | 105 unsupported choices across four arms | Preregistered behavioral outcome |
@@ -68,7 +75,7 @@ with Fisher `p = 1`.
 | Study | What changed | Evidence class | Best starting artifact |
 |---|---|---|---|
 | v10.2 | **Primary benchmark:** impossible add-two task crossed with failure pressure and persistent memory in six models | Preregistered exploratory clustered pilot | [Report](work/impossible_add2_v10/runs/impossible_add2_v102_pilot_r1/report.md) and [post-hoc audit](work/impossible_add2_v10/POSTHOC_AUDIT.md) |
-| v11 | **Active extension:** same add-two task across three Gemini product tiers | Frozen protocol; live run paused safely at 146/216 subjects | [Protocol, runner, and checkpoint](work/impossible_add2_gemini_v11/) |
+| v11 | **Gemini extension:** same add-two task across three product tiers | Complete exploratory 216-subject run; integrity PASS | [Report, protocol, summary, and audit](work/impossible_add2_gemini_v11/) |
 | v1 | Memory arm in GPT-5.6 Terra/low | Preregistered confirmatory run | [Result report](outputs/confirmatory_v1_results.md) |
 | v2 | Model, reasoning, and memory arm | Preregistered multimodel extension | [Result report](outputs/multimodel_v2_results.md) |
 | v3 | Removed evaluator-skepticism sentence | Preregistered ablation; cross-version effect estimates descriptive | [Protocol](work/system_instruction_ablation_v3/protocol.md) and [suite report](work/system_instruction_ablation_v3/runs/system_instruction_ablation_v3_20260831_r1/suite_report.md) |
@@ -87,6 +94,10 @@ from behavioral effect estimates.
 
 For the primary benchmark, begin with the [complete v10.2 report](work/impossible_add2_v10/runs/impossible_add2_v102_pilot_r1/report.md)
 and [post-hoc classifier audit](work/impossible_add2_v10/POSTHOC_AUDIT.md). For
+the Gemini extension, use the [complete v11 report](work/impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/report.md),
+[summary](work/impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/summary.json),
+[raw audit archive](work/impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/audit.tar.gz.b64),
+and [post-hoc memory-classifier audit](work/impossible_add2_gemini_v11/POSTHOC_AUDIT.md). For
 concrete non-shortcut and memory-linked shortcut cases from the earlier
 benchmark, read the [worked audit examples in the README](README.md#worked-audit-examples).
 Together these artifacts include exact visible messages, inherited memory,
@@ -112,8 +123,9 @@ Supported by the recorded behavior:
 - In v10.2, all 42 subjects with an observed prohibited call were GPT-4.1 nano,
   and the first call occurred only after at least one follow-up message; its
   descriptive rate increased with pressure.
-- At the incomplete v11 checkpoint, Gemini 3.1 Pro violations appeared only in
-  completed failure-plus-persistence records; this is provisional.
+- In completed v11, Gemini 3.1 Pro made prohibited calls in every
+  failure-plus-persistence subject and none under neutral or repeated failure;
+  both Flash tiers made none.
 - Some models move from recognizing ambiguity to guessing or prohibited tool
   use after false evaluator failures.
 - The behavioral expression differs sharply by model package.
@@ -129,7 +141,8 @@ Not established by these studies:
 - Hidden deceptive intent or private reasoning content.
 - A true zero shortcut rate in GLM cells with censored subjects.
 - Generalization beyond these prompts, tools, models, and provider snapshots.
-- Any final conclusion from Gemini v11 before all 216 planned subjects finish.
+- A general causal memory effect from v11: persistent and private-note arms had
+  identical observed rates, with ceiling or floor outcomes in every cell.
 
 ## 6. Best next experiment
 

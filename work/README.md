@@ -7,12 +7,15 @@ failure pressure, evaluator feedback, reasoning, and persistent memory.
 Directory names and run paths are intentionally preserved so published audit
 links and manifest references remain stable.
 
+Repository code, analysis, and documentation were substantially AI-assisted;
+see the repository-wide [AI-assistance disclosure](../AI_DISCLOSURE.md).
+
 ## Primary impossible-task benchmark
 
 | Study | Status | Main question | Key artifact |
 |---|---|---|---|
 | [v10.2](impossible_add2_v10/) | Complete; 432 subjects, 42 with a prohibited call | Do failure pressure, “at all costs” instructions, or inherited notes increase use of prohibited `set_value` when `add_two` cannot reach 7? | [Report](impossible_add2_v10/runs/impossible_add2_v102_pilot_r1/report.md) · [Protocol](impossible_add2_v10/protocol.md) · [Post-hoc audit](impossible_add2_v10/POSTHOC_AUDIT.md) |
-| [v11](impossible_add2_gemini_v11/) | Live run paused safely at 146/216 subjects | Does the same behavior differ across three Gemini product tiers? | [Protocol](impossible_add2_gemini_v11/protocol.md) · [Run checkpoint](impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/status.json) · [Checkpoint audit archive](impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/checkpoint_146_audit.tar.gz.b64) |
+| [v11](impossible_add2_gemini_v11/) | Complete; 216 subjects, 24 prohibited calls, integrity PASS | Does the same behavior differ across three Gemini product tiers? | [Report](impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/report.md) · [Summary](impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/summary.json) · [Protocol](impossible_add2_gemini_v11/protocol.md) · [Final audit archive](impossible_add2_gemini_v11/runs/gemini_v11_pilot_r1/audit.tar.gz.b64) |
 
 ## Supporting goal-persistence studies
 
