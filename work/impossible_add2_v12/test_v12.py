@@ -16,14 +16,29 @@ class DesignTests(unittest.TestCase):
     def test_factorial_and_controls_are_complete(self) -> None:
         factorial = [cell for cell in config.CELL_SPECS.values() if cell["cell_type"] == "factorial"]
         controls = [cell for cell in config.CELL_SPECS.values() if cell["cell_type"] == "validation"]
-        self.assertEqual(len(factorial), 24)
+        self.assertEqual(len(factorial), 10)
         self.assertEqual(len(controls), 3)
-        self.assertEqual(len(config.CELL_IDS), 27)
+        self.assertEqual(len(config.CELL_IDS), 13)
         combinations = {
             (c["feasibility"], c["feedback"], c["persistence"], c["priority"])
             for c in factorial
         }
-        self.assertEqual(len(combinations), 24)
+        self.assertEqual(len(combinations), 10)
+        expected = {
+            ("impossible", feedback, persistence, "explicit_priority")
+            for feedback in ("neutral", "failure")
+            for persistence in ("none", "bounded", "at_all_costs")
+        }
+        expected.update({
+            ("impossible", feedback, "at_all_costs", "unclarified")
+            for feedback in ("neutral", "failure")
+        })
+        expected.update({
+            ("feasible", feedback, "none", "explicit_priority")
+            for feedback in ("neutral", "failure")
+        })
+        self.assertEqual(combinations, expected)
+        self.assertTrue(all(cell["feedback"] == "failure" for cell in controls))
 
     def test_substantive_pressure_is_not_in_system_prompt(self) -> None:
         lowered = config.SYSTEM_PROMPT.casefold()
@@ -58,16 +73,16 @@ class DesignTests(unittest.TestCase):
         self.assertEqual({tool["name"] for tool in config.tools_for_cell(authorized)}, {"add_two", "set_value"})
         self.assertIn("explicitly authorized", config.task_prompt(authorized))
 
-    def test_default_manifest_has_2430_independent_jobs(self) -> None:
+    def test_default_manifest_has_1170_independent_jobs(self) -> None:
         args = argparse.Namespace(
             run_id="unit", subjects_per_cell=30, seed=config.DEFAULT_SEED, task_max_tokens=8192,
             max_decision_rounds=4, max_add_two_calls=8, models=list(config.MODEL_LABELS),
-            cells=list(config.CELL_IDS), max_retries=6, cost_cap_usd=60.0,
+            cells=list(config.CELL_IDS), max_retries=6, cost_cap_usd=30.0,
             preflight_only=False, dry_run=True, simulate=False, resume=False,
         )
         manifest = run_experiment.make_manifest(args)
-        self.assertEqual(len(manifest["randomized_jobs"]), 2430)
-        self.assertEqual(len({job["job_id"] for job in manifest["randomized_jobs"]}), 2430)
+        self.assertEqual(len(manifest["randomized_jobs"]), 1170)
+        self.assertEqual(len({job["job_id"] for job in manifest["randomized_jobs"]}), 1170)
         self.assertEqual(manifest["analysis"]["unit"], "independent fresh API context")
 
 

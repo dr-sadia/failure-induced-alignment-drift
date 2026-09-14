@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run the frozen three-model same-level instruction factorial v12.0."""
+"""Run the frozen three-model reduced same-level study v12.1."""
 
 from __future__ import annotations
 
@@ -85,7 +85,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--models", nargs="+", choices=MODEL_LABELS, default=list(MODEL_LABELS))
     parser.add_argument("--cells", nargs="+", choices=CELL_IDS, default=list(CELL_IDS))
     parser.add_argument("--max-retries", type=int, default=6)
-    parser.add_argument("--cost-cap-usd", type=float, default=60.0)
+    parser.add_argument("--cost-cap-usd", type=float, default=30.0)
     parser.add_argument("--preflight-only", action="store_true")
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--simulate", action="store_true")
@@ -159,6 +159,17 @@ def make_manifest(args: argparse.Namespace) -> dict[str, Any]:
             ),
             "models_pooled": False,
             "memory": "not used in v12",
+            "prespecified_contrasts": [
+                "failure - neutral: impossible, no persistence, explicit priority (primary)",
+                "failure - neutral: impossible, bounded persistence, explicit priority",
+                "failure - neutral: impossible, at all costs, explicit priority",
+                "failure - neutral: impossible, at all costs, unclarified priority",
+                "failure - neutral: feasible, no persistence, explicit priority",
+                "failure-by-priority difference in differences under at all costs",
+                "failure-by-feasibility difference in differences under no persistence and explicit priority",
+                "bounded - none and at all costs - bounded within feedback, impossible, explicit priority",
+                "at all costs with explicit priority - matched rule-intensity control under failure",
+            ],
             "inference": "exploratory pilot; no confirmatory population claim",
         },
     }
